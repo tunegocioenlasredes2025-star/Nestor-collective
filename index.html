@@ -311,21 +311,191 @@
   @media (max-width:980px){.team .head{grid-template-columns:1fr}.team .head p{justify-self:start}}
   @media (max-width:640px){.people{grid-template-columns:repeat(2,1fr);gap:14px}.person .info{padding-top:12px}.person .name{font-size:15px}}
 
-  /* ---------- Next sections placeholder ---------- */
-  .next{padding:12vh 0 8vh;border-top:1px solid var(--line)}
-  .next .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-  .next .card{
-    padding:26px 22px;border:1px dashed var(--line);border-radius:14px;
-    font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
-    display:flex;flex-direction:column;gap:14px;min-height:150px;justify-content:space-between;
-  }
-  .next .card b{font-weight:500;color:var(--text);letter-spacing:.06em;text-transform:none;font-size:18px}
-  .next .card small{opacity:.6}
-  @media (max-width:980px){.next .grid{grid-template-columns:repeat(2,1fr)}}
 
-  footer{padding:60px 0 40px;border-top:1px solid var(--line)}
-  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center;color:var(--muted);font-size:13px}
-  footer .claim{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--text)}
+  /* ---------- 04 What we do ---------- */
+  .what{padding:12vh 0 10vh;border-top:1px solid var(--line)}
+  .what .head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:56px}
+  .what h2{font-weight:200;font-size:clamp(40px,5.6vw,84px);line-height:1;letter-spacing:-.025em}
+  .what h2 b{font-weight:600}
+  .what .head p{font-weight:300;color:var(--muted);font-size:clamp(15px,1.25vw,18px);line-height:1.7;max-width:460px;justify-self:end}
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .pillar{
+    position:relative;min-height:460px;padding:34px 30px;border-radius:22px;overflow:hidden;
+    border:1px solid var(--line);background:linear-gradient(180deg,rgba(10,26,63,.55),rgba(3,6,15,.2));
+    display:flex;flex-direction:column;justify-content:flex-end;gap:14px;
+    transition:transform .6s var(--ease),border-color .4s,box-shadow .5s;
+  }
+  .pillar:hover{transform:translateY(-6px);border-color:var(--cyan-soft);box-shadow:0 40px 80px -40px rgba(53,214,255,.45)}
+  .pillar svg{position:absolute;top:22px;right:26px;left:26px;height:36%;width:auto;max-width:calc(100% - 52px);opacity:.9}
+  .pillar .k{font-family:var(--serif);font-style:italic;color:var(--cyan);font-size:18px}
+  .pillar h3{font-weight:300;font-size:clamp(30px,2.8vw,40px);letter-spacing:-.02em;line-height:1.05}
+  .pillar p{color:var(--muted);font-weight:300;font-size:15px;line-height:1.6;max-width:32ch}
+  .pillar .glow{position:absolute;inset:auto -30% -40% -30%;height:70%;border-radius:50%;filter:blur(60px);opacity:.35;pointer-events:none;background:radial-gradient(circle,#1d5cff,transparent 65%)}
+  .pillar:nth-child(2) .glow{background:radial-gradient(circle,#35d6ff,transparent 65%)}
+  .pillar:nth-child(3) .glow{background:radial-gradient(circle,#0b2a8a,transparent 65%)}
+  .programs{margin-top:64px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:1px solid var(--line)}
+  .program{padding:30px 28px 30px 0;border-bottom:1px solid var(--line);display:grid;gap:10px}
+  .program+.program{border-left:1px solid var(--line);padding-left:28px}
+  .program .when{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan)}
+  .program h4{font-weight:500;font-size:19px;letter-spacing:-.01em}
+  .program p{color:var(--muted);font-weight:300;font-size:14.5px;line-height:1.65}
+  .programs-label{margin-top:64px;margin-bottom:0}
+  @media (max-width:980px){
+    .what .head{grid-template-columns:1fr}.what .head p{justify-self:start}
+    .pillars{grid-template-columns:1fr}.pillar{min-height:300px}
+    .programs{grid-template-columns:1fr}.program+.program{border-left:0;padding-left:0}
+  }
+
+  /* ---------- 05 Speakers ---------- */
+  .speakers{padding:12vh 0 10vh;border-top:1px solid var(--line)}
+  .speakers .head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:56px}
+  .speakers h2{font-weight:200;font-size:clamp(40px,5.6vw,84px);line-height:1;letter-spacing:-.025em}
+  .speakers h2 b{font-weight:600}
+  .speakers .head p{font-weight:300;color:var(--muted);font-size:clamp(15px,1.25vw,18px);line-height:1.7;max-width:460px;justify-self:end}
+  .spk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .spk{
+    text-align:left;background:none;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;
+    display:grid;gap:0;
+  }
+  .spk .ph{
+    position:relative;aspect-ratio:4/5;border-radius:18px;overflow:hidden;border:1px solid var(--line);
+    background:linear-gradient(160deg,#0b1d4d,#040a1f);
+    transition:transform .6s var(--ease),border-color .4s,box-shadow .5s;
+  }
+  .spk .ph img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.08);transition:filter .6s var(--ease),transform .8s var(--ease)}
+  .spk .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(3,6,15,.8),rgba(3,6,15,0) 55%),linear-gradient(135deg,rgba(29,92,255,.25),transparent 60%);pointer-events:none}
+  .spk:hover .ph,.spk:focus-visible .ph{transform:translateY(-6px);border-color:var(--cyan-soft);box-shadow:0 30px 60px -30px rgba(53,214,255,.45)}
+  .spk:hover .ph img{filter:grayscale(0);transform:scale(1.04)}
+  .spk:focus-visible{outline:none}
+  .spk .ph .ini{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:clamp(44px,4.6vw,72px);color:rgba(238,243,255,.45)}
+  .spk .ph.has img+.ini{display:none}
+  .spk .more{
+    position:absolute;right:14px;bottom:14px;z-index:2;width:36px;height:36px;border-radius:50%;
+    border:1px solid rgba(238,243,255,.35);display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:16px;background:rgba(3,6,15,.35);backdrop-filter:blur(6px);
+    transition:background .3s,transform .4s var(--ease);
+  }
+  .spk:hover .more{background:var(--electric);border-color:transparent;transform:rotate(45deg)}
+  .spk .info{padding:18px 4px 0}
+  .spk .name{font-weight:500;font-size:17px;letter-spacing:.06em;text-transform:uppercase}
+  .spk .pos{font-family:var(--serif);font-style:italic;color:var(--cyan);font-size:16px;margin-top:4px}
+  .spk .short{color:var(--muted);font-size:13.5px;line-height:1.55;margin-top:8px;font-weight:300}
+  .spk.soon .ph{border-style:dashed;background:rgba(255,255,255,.015)}
+  .spk.soon .ph .ini{font-family:var(--sans);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+  .spk.soon{cursor:default}
+  .spk.soon:hover .ph{transform:none;box-shadow:none;border-color:var(--line)}
+  .spk.soon .more{display:none}
+  .spk.soon .name{color:var(--muted)}
+  .spk-foot{margin-top:48px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+  @media (max-width:1100px){.spk-grid{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:980px){.speakers .head{grid-template-columns:1fr}.speakers .head p{justify-self:start}}
+  @media (max-width:640px){.spk-grid{grid-template-columns:repeat(2,1fr);gap:14px}}
+
+  /* speaker profile dialog */
+  dialog.profile{
+    border:1px solid var(--line);border-radius:24px;padding:0;max-width:min(920px,calc(100% - 32px));width:100%;
+    background:#060d24;color:var(--text);box-shadow:0 60px 120px -40px rgba(0,0,0,.8);
+    overflow:hidden;
+  }
+  dialog.profile::backdrop{background:rgba(3,6,15,.78);backdrop-filter:blur(10px)}
+  dialog.profile .box{display:grid;grid-template-columns:.9fr 1.1fr;min-height:420px}
+  dialog.profile .pic{position:relative;background:linear-gradient(160deg,#0b1d4d,#040a1f);min-height:320px}
+  dialog.profile .pic img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1)}
+  dialog.profile .pic .ini{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:96px;color:rgba(238,243,255,.4)}
+  dialog.profile .pic.has .ini{display:none}
+  dialog.profile .txt{padding:44px 44px 40px;display:flex;flex-direction:column;gap:14px}
+  dialog.profile .txt .lbl{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--cyan)}
+  dialog.profile h3{font-weight:300;font-size:clamp(30px,3.2vw,44px);letter-spacing:-.02em;line-height:1.05}
+  dialog.profile .pos{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:19px}
+  dialog.profile .bio{color:var(--muted);font-weight:300;line-height:1.7;font-size:15.5px;margin-top:6px}
+  dialog.profile .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:18px}
+  dialog.profile .close{
+    position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);
+    background:rgba(3,6,15,.5);color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  }
+  dialog.profile .close:hover{background:var(--electric);border-color:transparent}
+  @media (max-width:760px){dialog.profile .box{grid-template-columns:1fr}dialog.profile .pic{aspect-ratio:4/3;min-height:0}dialog.profile .txt{padding:28px 24px}}
+
+  /* ---------- 07 Partners ---------- */
+  .partners{padding:12vh 0 10vh;border-top:1px solid var(--line)}
+  .partners .head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:56px}
+  .partners h2{font-weight:200;font-size:clamp(40px,5.6vw,84px);line-height:1;letter-spacing:-.025em}
+  .partners h2 b{font-weight:600}
+  .partners .head p{font-weight:300;color:var(--muted);font-size:clamp(15px,1.25vw,18px);line-height:1.7;max-width:460px;justify-self:end}
+  .ptn-group{display:grid;grid-template-columns:300px minmax(0,1fr);gap:40px;padding:44px 0;border-top:1px solid var(--line)}
+  .ptn-group:last-of-type{border-bottom:1px solid var(--line)}
+  .ptn-group .side .kind{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:10px}
+  .ptn-group .side .kind::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+  .ptn-group.sup .side .kind::before{border-radius:2px;background:var(--electric);box-shadow:0 0 12px var(--electric)}
+  .ptn-group.sup .side .kind{color:#7d9cff}
+  .ptn-group .side h3{font-weight:300;font-size:clamp(24px,2.2vw,32px);letter-spacing:-.02em;margin-top:12px;line-height:1.1}
+  .ptn-group .side p{color:var(--muted);font-weight:300;font-size:14.5px;line-height:1.65;margin-top:12px;max-width:30ch}
+  .logos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;min-width:0}
+  .logo{
+    aspect-ratio:2.4/1;border-radius:14px;border:1px dashed var(--line);
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);opacity:.85;min-width:0;
+    background:rgba(255,255,255,.015);transition:border-color .3s,color .3s;
+  }
+  .logo img{max-height:60%;max-width:70%;filter:grayscale(1) brightness(1.6);opacity:.85}
+  .logo:hover{border-color:var(--cyan-soft);color:var(--text)}
+  .sup .logo{border-radius:8px}
+  .ptn-cta{margin-top:40px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+  .ptn-cta p{color:var(--muted);font-weight:300;max-width:52ch}
+  @media (max-width:980px){.partners .head{grid-template-columns:1fr}.partners .head p{justify-self:start}.ptn-group{grid-template-columns:1fr;gap:24px}.logos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media (max-width:560px){.logos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+  /* ---------- 08 Join ---------- */
+  .join{padding:16vh 0 12vh;position:relative;overflow:hidden;border-top:1px solid var(--line)}
+  .join::before{content:"";position:absolute;left:50%;top:40%;width:90vw;height:90vw;max-width:1100px;max-height:1100px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(29,92,255,.22),rgba(53,214,255,.06) 45%,transparent 70%);filter:blur(40px);pointer-events:none}
+  .join .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:start}
+  .join .we{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:clamp(22px,2.4vw,30px);display:block;margin-bottom:14px}
+  .join h2{font-weight:200;font-size:clamp(44px,6.6vw,104px);line-height:.98;letter-spacing:-.03em}
+  .join h2 b{font-weight:600}
+  .join .lead{margin-top:28px;color:var(--muted);font-weight:300;font-size:clamp(16px,1.35vw,19px);line-height:1.65;max-width:46ch}
+  .join .big{margin-top:44px;display:inline-flex;align-items:center;gap:18px;font-size:clamp(20px,2vw,28px);font-weight:500;color:#fff;text-decoration:none;letter-spacing:.02em}
+  .join .big .arrow{width:60px;height:60px;border-radius:50%;background:var(--electric);display:flex;align-items:center;justify-content:center;font-size:24px;transition:transform .4s var(--ease),box-shadow .4s}
+  .join .big:hover .arrow{transform:translateX(8px);box-shadow:0 0 0 8px rgba(29,92,255,.15),0 20px 50px -10px rgba(29,92,255,.9)}
+  .join .who{margin-top:44px;display:flex;flex-wrap:wrap;gap:10px}
+  .form{
+    border:1px solid var(--line);border-radius:24px;padding:34px;
+    background:rgba(6,13,36,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    display:grid;gap:16px;
+  }
+  .form .t{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--cyan);margin-bottom:4px}
+  .form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .field{display:grid;gap:7px}
+  .field label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .field input,.field select,.field textarea{
+    width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);
+    background:rgba(255,255,255,.03);color:var(--text);font:inherit;font-size:15px;
+    transition:border-color .3s,box-shadow .3s;
+  }
+  .field select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px;background-repeat:no-repeat}
+  .field select option{background:#060d24;color:var(--text)}
+  .field textarea{min-height:92px;resize:vertical}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--cyan-soft);box-shadow:0 0 0 4px rgba(53,214,255,.12)}
+  .form .btn{justify-content:center;margin-top:6px;padding:15px 22px;font-size:15px}
+  .form .note{font-size:12px;color:var(--muted);line-height:1.5}
+  .form .ok{display:none;padding:18px;border-radius:14px;border:1px solid var(--cyan-soft);background:rgba(53,214,255,.08);color:var(--text);line-height:1.6;font-size:15px}
+  .form.sent .ok{display:block}
+  .form.sent .row,.form.sent .field,.form.sent .btn,.form.sent .note{display:none}
+  @media (max-width:980px){.join .wrap{grid-template-columns:1fr;gap:44px}}
+  @media (max-width:560px){.form{padding:24px}.form .row{grid-template-columns:1fr}}
+
+  /* ---------- footer ---------- */
+  footer{padding:70px 0 34px;border-top:1px solid var(--line);background:rgba(3,6,15,.6)}
+  footer .top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:44px;border-bottom:1px solid var(--line)}
+  footer .claim{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--text);max-width:22ch;line-height:1.35;margin-top:14px}
+  footer h5{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;font-weight:500}
+  footer ul{list-style:none;display:grid;gap:10px}
+  footer ul a{color:var(--muted);text-decoration:none;font-size:14px;transition:color .3s}
+  footer ul a:hover{color:var(--text)}
+  footer .bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:24px;color:var(--muted);font-size:12.5px;letter-spacing:.06em}
+  @media (max-width:820px){footer .top{grid-template-columns:1fr 1fr}}
+  @media (max-width:520px){footer .top{grid-template-columns:1fr}}
+
+
 
   @media (prefers-reduced-motion:reduce){
     .aurora span,.scroll-hint i{animation:none}
@@ -417,6 +587,84 @@
     </div>
   </section>
 
+  <!-- 04 WHAT WE DO -->
+  <section class="what" id="what">
+    <div class="wrap">
+      <div class="sec-label rv"><b>04</b> What we do</div>
+      <div class="head">
+        <h2 class="rv d1">Learning. Networking.<br><b>Opportunities.</b></h2>
+        <p class="rv d2">Three things every member gets from Nestor, whatever their university or country.</p>
+      </div>
+      <div class="pillars">
+        <article class="pillar rv">
+          <div class="glow"></div>
+          <svg viewBox="0 0 300 140" fill="none" stroke="#35d6ff" stroke-width="1" aria-hidden="true">
+            <circle cx="150" cy="70" r="14" opacity=".95"/><circle cx="150" cy="70" r="30" opacity=".7"/><circle cx="150" cy="70" r="46" opacity=".5"/><circle cx="150" cy="70" r="62" opacity=".32"/><circle cx="150" cy="70" r="78" opacity=".18"/>
+            <circle cx="150" cy="70" r="3" fill="#fff" stroke="none"/>
+          </svg>
+          <span class="k">Learning</span>
+          <h3>Learn from people who built extraordinary careers.</h3>
+          <p>Conversations, webinars and Q&amp;A sessions with negotiators, diplomats, experts and CEOs.</p>
+        </article>
+        <article class="pillar rv d1">
+          <div class="glow"></div>
+          <svg viewBox="0 0 300 140" fill="none" stroke="#35d6ff" stroke-width="1" aria-hidden="true">
+            <path d="M40 110 L110 40 L170 90 L230 30 L260 70" opacity=".5"/><path d="M110 40 L170 90 M40 110 L170 90 M230 30 L170 90" opacity=".35"/>
+            <circle cx="40" cy="110" r="5" fill="#0a1a3f"/><circle cx="110" cy="40" r="5" fill="#0a1a3f"/><circle cx="170" cy="90" r="7" fill="#fff" stroke="none"/><circle cx="230" cy="30" r="5" fill="#0a1a3f"/><circle cx="260" cy="70" r="5" fill="#0a1a3f"/>
+          </svg>
+          <span class="k">Networking</span>
+          <h3>Connect with ambitious students across borders.</h3>
+          <p>A single community linking associations of law, consulting, diplomacy, marketing, leadership and entrepreneurship.</p>
+        </article>
+        <article class="pillar rv d2">
+          <div class="glow"></div>
+          <svg viewBox="0 0 300 140" fill="none" stroke="#35d6ff" stroke-width="1" aria-hidden="true">
+            <path d="M30 120 L90 90 L130 100 L190 50 L250 30" opacity=".6"/><path d="M220 30 L250 30 L250 60" opacity=".9"/>
+            <path d="M30 120 L90 90 L130 100 L190 50 L250 30 L250 120 Z" fill="url(#g1)" stroke="none" opacity=".25"/>
+            <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#35d6ff"/><stop offset="1" stop-color="#35d6ff" stop-opacity="0"/></linearGradient></defs>
+          </svg>
+          <span class="k">Opportunities</span>
+          <h3>Discover ways to learn, collaborate and grow.</h3>
+          <p>Partnerships, projects and recognition for the most motivated students in the network.</p>
+        </article>
+      </div>
+
+      <div class="sec-label rv programs-label">Inside Nestor</div>
+      <div class="programs">
+        <div class="program rv"><span class="when">Always on</span><h4>Global Student Network</h4><p>An international community bringing together ambitious students from different universities and countries, united by an interest in negotiation and strategic communication.</p></div>
+        <div class="program rv d1"><span class="when">Every month</span><h4>Global Thought Leaders</h4><p>A webinar featuring internationally recognized speakers, followed by a Q&amp;A session with students from partner associations.</p></div>
+        <div class="program rv d2"><span class="when">End of academic year</span><h4>Annual Review &amp; Nestor Summit</h4><p>The speakers' contributions and the ideas that emerged, brought together in a shared summary and a final in-person event.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 SPEAKERS -->
+  <section class="speakers" id="speakers">
+    <div class="wrap">
+      <div class="sec-label rv"><b>05</b> Speakers</div>
+      <div class="head">
+        <h2 class="rv d1">People worth<br><b>listening to.</b></h2>
+        <p class="rv d2">Experts who have shaped how the world negotiates, communicates and leads. Click a speaker to read their profile.</p>
+      </div>
+      <div class="spk-grid" id="spkGrid"></div>
+      <div class="spk-foot rv"><span>The Nestor Speaker Archive grows with every session</span><span>Monthly · Global Thought Leaders</span></div>
+    </div>
+  </section>
+
+  <dialog class="profile" id="profile" aria-labelledby="pName">
+    <form method="dialog"><button class="close" aria-label="Close">×</button></form>
+    <div class="box">
+      <div class="pic" id="pPic"><img alt="" id="pImg"><span class="ini" id="pIni"></span></div>
+      <div class="txt">
+        <span class="lbl">Nestor Speaker</span>
+        <h3 id="pName"></h3>
+        <div class="pos" id="pPos"></div>
+        <p class="bio" id="pBio"></p>
+        <div class="tags" id="pTags"></div>
+      </div>
+    </div>
+  </dialog>
+
   <!-- 06 TEAM -->
   <section class="team" id="team">
     <div class="wrap">
@@ -430,16 +678,69 @@
     </div>
   </section>
 
-  <!-- NEXT SECTIONS (placeholder for the prototype) -->
-  <section class="next" id="what">
+  <!-- 07 PARTNERS -->
+  <section class="partners" id="partners">
     <div class="wrap">
-      <div class="sec-label rv">Next sections</div>
-      <div class="grid">
-        <div class="card rv"><span>04</span><b>Learning. Networking. Opportunities.</b><small>What we do</small></div>
-        <div class="card rv d1" id="speakers"><span>05</span><b>People worth listening to.</b><small>Speakers</small></div>
-        <div class="card rv d3" id="partners"><span>07</span><b>Community & Supporters</b><small>Partners</small></div>
-        <div class="card rv d4" id="join"><span>08</span><b>Be part of the community.</b><small>Join Nestor →</small></div>
+      <div class="sec-label rv"><b>07</b> Partners</div>
+      <div class="head">
+        <h2 class="rv d1">Stronger<br><b>together.</b></h2>
+        <p class="rv d2">Two kinds of partners with two different roles: the communities that make up the network, and the organizations that support it.</p>
       </div>
+
+      <div class="ptn-group com rv">
+        <div class="side">
+          <span class="kind">Community</span>
+          <h3>Student associations &amp; university communities</h3>
+          <p>The associations and university groups that are part of the Nestor network.</p>
+        </div>
+        <div class="logos" id="logosCom"></div>
+      </div>
+
+      <div class="ptn-group sup rv">
+        <div class="side">
+          <span class="kind">Supporters</span>
+          <h3>Companies &amp; organizations</h3>
+          <p>Organizations that support Nestor and its mission of accessible, high-level learning.</p>
+        </div>
+        <div class="logos" id="logosSup"></div>
+      </div>
+
+      <div class="ptn-cta rv">
+        <p>Is your association or organization interested in joining the network? We'd love to hear from you.</p>
+        <a class="btn btn-ghost" href="#join">Become a partner <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 JOIN -->
+  <section class="join" id="join">
+    <div class="wrap">
+      <div>
+        <div class="sec-label rv"><b>08</b> Join Nestor</div>
+        <span class="we rv d1">Be part of the community.</span>
+        <h2 class="rv d1">Tomorrow's leaders<br>build <b>bridges.</b></h2>
+        <p class="lead rv d2">Whether you're a student, an association or an organization, there's a place for you in Nestor. Tell us who you are and we'll get in touch.</p>
+        <a class="big rv d3" href="#joinForm">Join Nestor <span class="arrow">→</span></a>
+        <div class="who rv d4"><span class="pill">Students</span><span class="pill">Student associations</span><span class="pill">Universities</span><span class="pill">Organizations</span></div>
+      </div>
+      <form class="form rv d2" id="joinForm" novalidate>
+        <div class="t">Request to join</div>
+        <div class="row">
+          <div class="field"><label for="fName">Name</label><input id="fName" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="fEmail">Email</label><input id="fEmail" name="email" type="email" autocomplete="email" required></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="fUni">University / organization</label><input id="fUni" name="org" type="text" autocomplete="organization"></div>
+          <div class="field"><label for="fCountry">Country</label><input id="fCountry" name="country" type="text" autocomplete="country-name"></div>
+        </div>
+        <div class="field"><label for="fWho">I am a</label>
+          <select id="fWho" name="who"><option>Student</option><option>Student association</option><option>University</option><option>Company or organization</option><option>Speaker</option></select>
+        </div>
+        <div class="field"><label for="fMsg">Why Nestor? <span style="opacity:.6;letter-spacing:0;text-transform:none">(optional)</span></label><textarea id="fMsg" name="message"></textarea></div>
+        <button class="btn btn-primary" type="submit">Send request <span class="arrow">→</span></button>
+        <div class="note">We'll answer personally. No newsletters, no spam.</div>
+        <div class="ok" id="joinOk"></div>
+      </form>
     </div>
   </section>
 
@@ -447,8 +748,16 @@
 
 <footer>
   <div class="wrap">
-    <div class="claim">“Because tomorrow's leaders build bridges that change the world.”</div>
-    <div>© 2026 Nestor Collective · Prototype</div>
+    <div class="top">
+      <div>
+        <a class="brand" href="#top"><span class="n">Nestor</span><span class="c">Collective</span></a>
+        <div class="claim">“Because tomorrow's leaders build bridges that change the world.”</div>
+      </div>
+      <div><h5>Explore</h5><ul><li><a href="#belief">The belief</a></li><li><a href="#community">Community</a></li><li><a href="#what">What we do</a></li><li><a href="#speakers">Speakers</a></li></ul></div>
+      <div><h5>Nestor</h5><ul><li><a href="#team">Team</a></li><li><a href="#partners">Partners</a></li><li><a href="#join">Join Nestor</a></li></ul></div>
+      <div><h5>Follow</h5><ul><li><a href="#" rel="noopener">LinkedIn</a></li><li><a href="#" rel="noopener">Instagram</a></li><li><a href="mailto:">Email</a></li></ul></div>
+    </div>
+    <div class="bottom"><span>© 2026 Nestor Collective · International non-profit community</span><span>Negotiation · Strategic communication · Leadership · Diplomacy</span></div>
   </div>
 </footer>
 
@@ -533,6 +842,75 @@ const TEAM = [
     el.innerHTML='<div class="ph">'+(m.founder?'<span class="tag">Founder</span>':'')+'<img src="'+m.img+'" alt="'+m.name+'" loading="lazy" onerror="this.parentElement.classList.add(\'noimg\')"><span class="ini">'+ini+'</span></div>'+
       '<div class="info"><div class="name">'+m.name+'</div><div class="role">'+m.role+'</div><div class="uni">'+m.uni+'<span>'+m.city+'</span></div></div>';
     wrap.appendChild(el);io.observe(el);
+  });
+})();
+
+/* ---------- speakers (data-driven; photos go in img/speakers/) ---------- */
+const SPEAKERS = [
+  { name:'Joe Navarro', pos:'Former FBI Special Agent · Nonverbal Communication & Human Behavior', short:'Internationally recognized expert in nonverbal communication and human behavior.', img:'img/speakers/joe-navarro.webp',
+    bio:'Former FBI Special Agent and internationally recognized expert in nonverbal communication and human behavior. He has mentored Nestor\'s founder since 2024 and is one of the voices that shaped the idea of a global student network built around negotiation and strategic communication.',
+    tags:['Nonverbal communication','Human behavior','Negotiation'] },
+  { soon:true, name:'Speaker to be announced', pos:'Global Thought Leaders · monthly session' },
+  { soon:true, name:'Speaker to be announced', pos:'Global Thought Leaders · monthly session' },
+  { soon:true, name:'Speaker to be announced', pos:'Global Thought Leaders · monthly session' },
+];
+(function(){
+  const grid=document.getElementById('spkGrid'), dlg=document.getElementById('profile');
+  SPEAKERS.forEach((sp,i)=>{
+    const ini=sp.name.split(' ').slice(0,2).map(w=>w[0]).join('');
+    const el=document.createElement(sp.soon?'div':'button');
+    el.className='spk rv'+(sp.soon?' soon':'')+(i?' d'+Math.min(i,4):'');
+    if(!sp.soon)el.type='button';
+    el.innerHTML='<div class="ph">'+(sp.img?'<img src="'+sp.img+'" alt="'+sp.name+'" loading="lazy" onload="this.parentElement.classList.add(\'has\')" onerror="this.remove()">':'')+'<span class="ini">'+(sp.soon?'Coming soon':ini)+'</span>'+(sp.soon?'':'<span class="more">+</span>')+'</div>'+
+      '<div class="info"><div class="name">'+sp.name+'</div><div class="pos">'+sp.pos+'</div>'+(sp.short?'<div class="short">'+sp.short+'</div>':'')+'</div>';
+    if(!sp.soon)el.addEventListener('click',()=>open(sp,ini));
+    grid.appendChild(el);io.observe(el);
+  });
+  function open(sp,ini){
+    document.getElementById('pName').textContent=sp.name;
+    document.getElementById('pPos').textContent=sp.pos;
+    document.getElementById('pBio').textContent=sp.bio||'';
+    document.getElementById('pIni').textContent=ini;
+    const pic=document.getElementById('pPic'), img=document.getElementById('pImg');
+    pic.classList.remove('has');
+    img.style.display='none';
+    if(sp.img){img.alt=sp.name;img.onload=()=>{img.style.display='';pic.classList.add('has');};img.onerror=()=>{img.style.display='none';};img.src=sp.img;} else {img.removeAttribute('src');}
+    document.getElementById('pTags').innerHTML=(sp.tags||[]).map(t=>'<span class="pill">'+t+'</span>').join('');
+    dlg.showModal();
+  }
+  dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
+})();
+
+/* ---------- partners (logos go in img/partners/) ---------- */
+const PARTNERS = {
+  community:[ /* {name:'Association name', img:'img/partners/x.svg'} */ ],
+  supporters:[ /* {name:'Company name', img:'img/partners/y.svg'} */ ],
+};
+(function(){
+  function fill(id,list,slots,label){
+    const w=document.getElementById(id);
+    for(let i=0;i<Math.max(slots,list.length);i++){
+      const it=list[i];const d=document.createElement('div');d.className='logo';
+      d.innerHTML=it?(it.img?'<img src="'+it.img+'" alt="'+it.name+'">':it.name):label;
+      w.appendChild(d);
+    }
+  }
+  fill('logosCom',PARTNERS.community,8,'Association');
+  fill('logosSup',PARTNERS.supporters,4,'Supporter');
+})();
+
+/* ---------- join form (mailto until a backend/form service is connected) ---------- */
+const JOIN_EMAIL = '';   // <- set the real address, e.g. 'hello@nestorcollective.org'
+(function(){
+  const f=document.getElementById('joinForm');
+  f.addEventListener('submit',e=>{
+    e.preventDefault();
+    if(!f.reportValidity())return;
+    const d=Object.fromEntries(new FormData(f).entries());
+    const body='Name: '+d.name+'\nEmail: '+d.email+'\nUniversity / organization: '+(d.org||'-')+'\nCountry: '+(d.country||'-')+'\nI am a: '+d.who+'\n\n'+(d.message||'');
+    if(JOIN_EMAIL){ location.href='mailto:'+JOIN_EMAIL+'?subject='+encodeURIComponent('Join Nestor - '+d.name)+'&body='+encodeURIComponent(body); }
+    document.getElementById('joinOk').innerHTML='<b>Thanks, '+d.name.split(' ')[0]+'.</b> Your request is on its way. We\'ll get back to you personally at <b>'+d.email+'</b>.';
+    f.classList.add('sent');
   });
 })();
 
