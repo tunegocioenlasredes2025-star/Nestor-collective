@@ -107,7 +107,7 @@
     min-height:100svh;display:flex;align-items:center;
     padding:120px 0 110px;position:relative;
   }
-  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
+  .hero .wrap{display:grid;grid-template-columns:1fr;max-width:1000px;margin-left:max(24px,calc((100% - var(--max))/2))}
   .eyebrow{
     display:inline-flex;align-items:center;gap:12px;
     font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:400;
@@ -116,13 +116,13 @@
   .eyebrow::before{content:"";width:34px;height:1px;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
   .hero h1{
     font-weight:200;
-    font-size:clamp(44px,6.4vw,92px);
-    line-height:.98;letter-spacing:-.025em;
+    font-size:clamp(46px,7.2vw,112px);
+    line-height:.96;letter-spacing:-.03em;
   }
   .hero h1 b{font-weight:600}
   .hero h1 .dot{color:var(--cyan)}
   .hero p.lead{
-    margin-top:26px;max-width:520px;
+    margin-top:30px;max-width:560px;
     font-size:clamp(16px,1.4vw,19px);font-weight:300;color:var(--muted);line-height:1.65;
   }
   .hero .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
@@ -132,27 +132,6 @@
   }
   .hero .meta span{display:flex;align-items:center;gap:10px}
   .hero .meta span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
-  .hero .visual{position:relative;height:min(64vh,600px);display:flex;align-items:center;justify-content:center}
-  .quote-mark{
-    font-family:var(--serif);font-size:clamp(220px,26vw,420px);line-height:.6;
-    color:rgba(238,243,255,.07);position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);
-    user-select:none;pointer-events:none;
-  }
-  .orb{
-    width:min(38vw,420px);aspect-ratio:1;border-radius:50%;position:relative;
-    background:
-      radial-gradient(circle at 35% 30%,rgba(53,214,255,.55) 0%,rgba(29,92,255,.35) 28%,rgba(10,26,63,.6) 55%,rgba(3,6,15,0) 72%);
-    filter:blur(2px);
-    animation:breathe 9s ease-in-out infinite;
-  }
-  .orb::after{
-    content:"";position:absolute;inset:-18%;border-radius:50%;
-    border:1px solid rgba(53,214,255,.12);
-    animation:spin 40s linear infinite;
-    mask:linear-gradient(120deg,#000 0 40%,transparent 60% 100%);-webkit-mask:linear-gradient(120deg,#000 0 40%,transparent 60% 100%);
-  }
-  @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-  @keyframes spin{to{transform:rotate(360deg)}}
   .scroll-hint{
     position:absolute;left:50%;bottom:26px;transform:translateX(-50%);
     display:flex;flex-direction:column;align-items:center;gap:10px;
@@ -163,10 +142,7 @@
   @media (max-width:1100px){.scroll-hint{display:none}}
   @media (max-width:920px){
     .hero{padding:110px 0 70px}
-    .hero .wrap{grid-template-columns:1fr;gap:20px}
-    .hero .visual{height:220px;order:-1}
-    .quote-mark{font-size:200px}
-    .orb{width:180px}
+    .hero .wrap{margin-left:auto}
   }
 
   /* ---------- Section chrome ---------- */
@@ -180,7 +156,7 @@
   .sec-label::after{content:"";flex:1;height:1px;background:var(--line);max-width:120px}
 
   /* ---------- 02 Belief ---------- */
-  .belief{padding:18vh 0 14vh;min-height:118vh}
+  .belief{padding:18vh 0 4vh;min-height:132vh}
   .belief .sticky{position:sticky;top:18vh}
   .belief .we{
     font-family:var(--serif);font-style:italic;font-size:clamp(28px,3.2vw,44px);color:var(--muted);
@@ -193,12 +169,12 @@
   }
   .belief h2 .w{
     display:inline-block;margin-right:.26em;
-    opacity:.14;transform:translateY(6px);
-    transition:opacity .5s var(--ease),transform .5s var(--ease),color .5s;
+    color:#2a3a63;transform:translateY(8px);filter:blur(1.5px);
+    transition:color .55s var(--ease),transform .55s var(--ease),filter .55s var(--ease),text-shadow .55s;
   }
-  .belief h2 .w.on{opacity:1;transform:none}
+  .belief h2 .w.on{color:var(--text);transform:none;filter:none;text-shadow:0 0 30px rgba(53,214,255,.25)}
   .belief h2 .w.hi{font-weight:600}
-  .belief h2 .w.hi.on{color:#fff}
+  .belief h2 .w.hi.on{color:#fff;text-shadow:0 0 22px rgba(53,214,255,.65),0 0 60px rgba(29,92,255,.35)}
   .belief .foot{
     margin-top:56px;display:flex;flex-wrap:wrap;gap:40px;
     font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
@@ -352,8 +328,9 @@
   footer .claim{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--text)}
 
   @media (prefers-reduced-motion:reduce){
-    .aurora span,.orb,.orb::after,.scroll-hint i{animation:none}
-    .rv,.stat,.belief h2 .w{transition:none;opacity:1;transform:none}
+    .aurora span,.scroll-hint i{animation:none}
+    .rv,.stat{transition:none;opacity:1;transform:none}
+    .belief h2 .w{transition:none;color:var(--text);transform:none;filter:none}
   }
 </style>
 </head>
@@ -395,10 +372,6 @@
         <div class="meta rv d4">
           <span>6 countries</span><span>3 continents</span><span>Launching September 2026</span>
         </div>
-      </div>
-      <div class="visual" aria-hidden="true">
-        <div class="quote-mark">“</div>
-        <div class="orb"></div>
       </div>
     </div>
     <div class="scroll-hint"><span>Scroll</span><i></i></div>
@@ -519,9 +492,9 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
   const foot=document.getElementById('beliefFoot');
   function update(){
     const r=sec.getBoundingClientRect();
-    const total=r.height-innerHeight*.70;
-    const p=Math.min(1,Math.max(0,(-r.top+innerHeight*.22)/total));
-    const n=Math.round(p*words.length*1.08);
+    const total=r.height-innerHeight*.75;
+    const p=Math.min(1,Math.max(0,(-r.top+innerHeight*.30)/total));
+    const n=Math.round(p*words.length*1.05);
     words.forEach((w,i)=>w.classList.toggle('on',i<n));
     foot.classList.toggle('on',p>.92);
   }
