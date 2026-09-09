@@ -783,6 +783,11 @@ addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40),{pa
 /* ---------- reveal ---------- */
 const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);} }),{threshold:.15,rootMargin:'0px 0px -8% 0px'});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// fallback: also reveal on scroll position (covers long jumps / observers that never fire)
+let rvTick=false;
+function rvCheck(){rvTick=false;const H=innerHeight;document.querySelectorAll('.rv:not(.in)').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<H*.92&&r.bottom>0)el.classList.add('in');});}
+addEventListener('scroll',()=>{if(!rvTick){rvTick=true;requestAnimationFrame(rvCheck);}},{passive:true});
+addEventListener('load',()=>setTimeout(rvCheck,300));
 
 /* ---------- belief: word-by-word reveal on scroll ---------- */
 (function(){
