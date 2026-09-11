@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nestor Collective — Connecting Minds Through Negotiation</title>
-<meta name="description" content="Nestor Collective is an international non-profit community connecting university students through negotiation and strategic communication.">
+<title>NESTOR Collective</title>
+<meta name="description" content="NESTOR Collective is an international non-profit community connecting university students through negotiation, strategic communication and leadership, while opening doors to exceptional experts, ideas and opportunities from around the world.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=GFS+Didot&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#03060f;
@@ -100,7 +100,40 @@
   .btn-ghost:hover{border-color:rgba(143,163,199,.5);background:rgba(255,255,255,.07)}
   .btn .arrow{display:inline-block;transition:transform .35s var(--ease)}
   .btn:hover .arrow{transform:translateX(4px)}
-  @media (max-width:820px){.links{display:none}.btn{white-space:nowrap}nav .btn-primary{padding:11px 18px;font-size:13px}}
+  .nav-right{display:flex;align-items:center;gap:10px}
+  .menu-btn{
+    display:none;position:relative;flex:0 0 auto;width:46px;height:46px;border-radius:50%;
+    border:1px solid var(--line);background:rgba(3,6,15,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    color:var(--text);cursor:pointer;
+  }
+  .menu-btn i{position:absolute;left:14px;right:14px;height:1.5px;border-radius:2px;background:currentColor;transition:transform .4s var(--ease),top .4s var(--ease)}
+  .menu-btn i:nth-child(1){top:19px}.menu-btn i:nth-child(2){top:26px}
+  .menu-open .menu-btn i:nth-child(1){top:22px;transform:rotate(45deg)}
+  .menu-open .menu-btn i:nth-child(2){top:22px;transform:rotate(-45deg)}
+  .menu-btn:focus-visible,.mnav a:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+  @media (max-width:1100px){.links{display:none}.menu-btn{display:block}}
+  @media (max-width:820px){.btn{white-space:nowrap}nav .btn-primary{padding:11px 18px;font-size:13px}}
+  @media (max-width:480px){.nav-right .btn-primary{display:none}}
+  body.menu-open{overflow:hidden}
+  .mnav{
+    position:fixed;inset:0;z-index:19;overflow-y:auto;
+    display:flex;flex-direction:column;justify-content:space-between;gap:32px;padding:108px 24px 34px;
+    background:rgba(3,6,15,.95);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility 0s linear .45s;
+  }
+  .menu-open .mnav{opacity:1;visibility:visible;transition:opacity .45s var(--ease)}
+  .mnav ol{list-style:none;display:grid;max-width:560px;width:100%}
+  .mnav ol a{
+    display:flex;align-items:baseline;gap:18px;padding:12px 0;border-bottom:1px solid var(--line);
+    color:var(--text);text-decoration:none;font-weight:200;font-size:clamp(28px,7vw,40px);letter-spacing:-.02em;
+    opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease),color .3s;
+  }
+  .menu-open .mnav ol a{opacity:1;transform:none}
+  .mnav ol a small{min-width:24px;font-size:11px;font-weight:500;letter-spacing:.2em;color:var(--cyan)}
+  .mnav ol a:hover{color:var(--cyan)}
+  .mnav .mfoot{display:grid;gap:16px;max-width:560px;width:100%}
+  .mnav .mfoot .btn{justify-content:center;padding:15px 22px}
+  .mnav .mfoot p{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
 
   /* ---------- Hero ---------- */
   .hero{
@@ -116,13 +149,19 @@
   .eyebrow::before{content:"";width:34px;height:1px;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
   .hero h1{
     font-weight:200;
-    font-size:clamp(46px,7.2vw,112px);
-    line-height:.96;letter-spacing:-.03em;
+    font-size:clamp(42px,6.2vw,94px);
+    line-height:1;letter-spacing:-.03em;max-width:17ch;text-wrap:balance;
   }
-  .hero h1 b{font-weight:600}
+  .hero h1 b{
+    font-weight:600;color:transparent;
+    background:linear-gradient(100deg,#fff 0%,#fff 42%,#8fe9ff 50%,#fff 58%,#fff 100%);background-size:260% 100%;
+    -webkit-background-clip:text;background-clip:text;
+    animation:sheen 2.6s var(--ease) 1s 1 both;
+  }
+  @keyframes sheen{from{background-position:100% 0}to{background-position:0 0}}
   .hero h1 .dot{color:var(--cyan)}
   .hero p.lead{
-    margin-top:30px;max-width:560px;
+    margin-top:30px;max-width:600px;
     font-size:clamp(16px,1.4vw,19px);font-weight:300;color:var(--muted);line-height:1.65;
   }
   .hero .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
@@ -262,55 +301,125 @@
   .rv.in{opacity:1;transform:none}
   .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.45s}
 
+  /* ---------- Why NESTOR (story) ---------- */
+  .story{padding:14vh 0 12vh;border-top:1px solid var(--line)}
+  .story .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,88px);align-items:start}
+  .story .greek{font-family:'GFS Didot',Georgia,'Times New Roman',serif;font-size:clamp(28px,3.3vw,50px);line-height:1.28;color:var(--text);text-wrap:balance}
+  .story .greek span{color:var(--cyan);text-shadow:0 0 26px rgba(53,214,255,.45)}
+  .story .trans{margin-top:24px;font-family:var(--serif);font-style:italic;font-size:clamp(20px,1.8vw,27px);line-height:1.35;color:var(--muted);max-width:30ch}
+  .story .trans em{color:var(--text)}
+  .story .src{margin-top:16px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);opacity:.8}
+  .story h2{font-weight:200;font-size:clamp(34px,4vw,60px);line-height:1.02;letter-spacing:-.025em;text-wrap:balance}
+  .story h2 b{font-weight:600}
+  .story .body p{margin-top:22px;color:var(--muted);font-weight:300;font-size:clamp(15px,1.2vw,17.5px);line-height:1.75;max-width:54ch}
+  .story .body p strong{color:var(--text);font-weight:500}
+  .timeline{position:relative;margin-top:clamp(56px,8vw,96px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .timeline::before{content:"";position:absolute;left:0;right:0;top:7px;height:1px;background:linear-gradient(90deg,var(--cyan),rgba(53,214,255,.12))}
+  .tl{position:relative;padding:36px 32px 0 0}
+  .tl::before{content:"";position:absolute;top:0;left:0;width:15px;height:15px;border-radius:50%;background:var(--bg);border:1px solid var(--cyan);box-shadow:0 0 14px rgba(53,214,255,.5)}
+  .tl.now::before{background:var(--cyan)}
+  .tl .yr{font-weight:200;font-size:clamp(30px,2.8vw,42px);letter-spacing:-.02em;line-height:1}
+  .tl .yr em{margin-left:8px;font-family:var(--serif);font-size:.55em;color:var(--cyan)}
+  .tl p{margin-top:12px;color:var(--muted);font-weight:300;font-size:15px;line-height:1.6;max-width:32ch}
+  @media (max-width:980px){
+    .story .grid{grid-template-columns:1fr}
+    .timeline{grid-template-columns:1fr;gap:34px}
+    .timeline::before{left:7px;right:auto;top:0;bottom:0;width:1px;height:auto;background:linear-gradient(180deg,var(--cyan),rgba(53,214,255,.12))}
+    .tl{padding:0 0 0 42px}
+  }
+
+  /* ---------- Slider (speakers + team) ---------- */
+  .sl-track{
+    position:relative;display:flex;overflow-x:auto;overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory;scrollbar-width:none;outline:none;border-radius:24px;
+  }
+  .sl-track::-webkit-scrollbar{display:none}
+  .sl-track:focus-visible{box-shadow:0 0 0 2px var(--cyan-soft)}
+  .slide{
+    position:relative;flex:0 0 100%;overflow:hidden;scroll-snap-align:start;scroll-snap-stop:always;
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,72px);align-items:center;
+  }
+  .sl-pic{
+    position:relative;width:min(100%,calc(70vh * .8));aspect-ratio:4/5;border-radius:24px;overflow:hidden;
+    border:1px solid var(--line);background:linear-gradient(160deg,#0b1d4d,#040a1f);
+  }
+  .sl-pic img{
+    width:100%;height:100%;display:block;object-fit:cover;object-position:center 22%;
+    filter:grayscale(1) contrast(1.06) brightness(.88);transform:scale(1.06);
+    transition:filter 1.4s var(--ease) .2s,transform 1.6s var(--ease);
+  }
+  .slide.is-active .sl-pic img{filter:none;transform:none}
+  .sl-pic::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(3,6,15,.55),rgba(3,6,15,0) 42%)}
+  .sl-pic .ini{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:clamp(80px,9vw,140px);color:rgba(238,243,255,.32)}
+  .sl-pic.has .ini{display:none}
+  .sl-pic[data-profile]{cursor:pointer}
+  .sl-pic .badge{
+    position:absolute;left:18px;top:18px;z-index:2;padding:6px 12px;border-radius:999px;
+    background:rgba(29,92,255,.85);backdrop-filter:blur(6px);font-size:10.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#fff;
+  }
+  .sl-pic.soon{border-style:dashed;background:rgba(255,255,255,.015)}
+  .sl-pic.soon .ini{flex-direction:column;gap:14px;font-family:var(--sans);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+  .sl-pic.soon .ini b{font-family:var(--serif);font-weight:400;font-size:clamp(90px,10vw,150px);letter-spacing:0;line-height:.8;color:rgba(53,214,255,.5);text-transform:none}
+  .sl-txt{position:relative;min-width:0;padding:10px 0}
+  .sl-ghost{
+    position:absolute;left:-.04em;top:0;transform:translateY(-12%);z-index:-1;pointer-events:none;user-select:none;
+    font-weight:700;font-size:clamp(90px,13vw,210px);line-height:.85;letter-spacing:-.04em;text-transform:uppercase;white-space:nowrap;
+    color:transparent;-webkit-text-stroke:1px rgba(143,163,199,.11);
+  }
+  .sl-kicker{display:flex;align-items:center;gap:12px;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--cyan)}
+  .sl-kicker::before{content:"";width:28px;height:1px;background:var(--cyan)}
+  .sl-name{margin-top:18px;font-weight:200;font-size:clamp(42px,5.4vw,84px);line-height:.98;letter-spacing:-.03em;text-wrap:balance}
+  .sl-name b{font-weight:600}
+  .sl-pos{margin-top:14px;font-family:var(--serif);font-style:italic;font-size:clamp(19px,1.7vw,24px);line-height:1.35;color:var(--muted);max-width:38ch}
+  .sl-desc{margin-top:22px;color:var(--muted);font-weight:300;font-size:clamp(15px,1.2vw,17px);line-height:1.75;max-width:54ch}
+  .sl-quote{margin-top:22px;padding-left:18px;border-left:1px solid var(--cyan);font-family:var(--serif);font-style:italic;font-size:clamp(19px,1.6vw,23px);line-height:1.4;color:var(--text);max-width:40ch}
+  .sl-facts{margin-top:28px;display:flex;flex-wrap:wrap;gap:18px 0;border-top:1px solid var(--line)}
+  .sl-fact{padding:16px 26px 0 0;margin-right:26px;border-right:1px solid var(--line)}
+  .sl-fact:last-child{border-right:0;margin-right:0}
+  .sl-fact b{display:block;font-weight:200;font-size:clamp(26px,2.4vw,36px);letter-spacing:-.02em;color:var(--text);font-variant-numeric:tabular-nums}
+  .sl-fact span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .sl-place{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px 26px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-variant-numeric:tabular-nums}
+  .sl-place .t{display:inline-flex;align-items:center;gap:9px;color:var(--text)}
+  .sl-place .t::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:blink 2.4s ease-in-out infinite}
+  @keyframes blink{50%{opacity:.3}}
+  .sl-actions{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
+  .sl-bar{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:28px;align-items:center}
+  .sl-count{min-width:92px;font-weight:200;font-size:28px;letter-spacing:-.02em;color:var(--muted);font-variant-numeric:tabular-nums}
+  .sl-count b{font-weight:500;color:var(--text)}
+  .sl-index{display:flex;flex-wrap:wrap;gap:6px 24px;min-width:0}
+  .sl-index button{
+    position:relative;padding:6px 0;border:0;background:none;cursor:pointer;
+    font:inherit;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:color .3s;
+  }
+  .sl-index button::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+  .sl-index button:hover,.sl-index button[aria-current="true"]{color:var(--text)}
+  .sl-index button[aria-current="true"]::after{transform:scaleX(1)}
+  .sl-nav{display:flex;gap:10px}
+  .sl-nav button{
+    width:54px;height:54px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.03);
+    color:var(--text);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:background .3s,border-color .3s,opacity .3s;
+  }
+  .sl-nav button:hover:not(:disabled){background:var(--electric);border-color:transparent}
+  .sl-nav button:disabled{opacity:.3;cursor:default}
+  .sl-nav button:focus-visible,.sl-index button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+  @media (max-width:860px){
+    .slide{grid-template-columns:1fr;gap:26px;align-items:start}
+    .sl-pic{width:100%;aspect-ratio:1/1}
+    .sl-ghost{top:0;transform:none;font-size:clamp(70px,22vw,120px)}
+    .sl-bar{grid-template-columns:auto auto;justify-content:space-between;gap:18px}
+    .sl-index{grid-column:1/-1;order:3}
+  }
+
   /* ---------- 06 Team ---------- */
   .team{padding:12vh 0 10vh;border-top:1px solid var(--line)}
-  .team .head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:60px}
+  .team .head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:56px}
   .team h2{font-weight:200;font-size:clamp(40px,5.6vw,84px);line-height:1;letter-spacing:-.025em}
   .team h2 b{font-weight:600}
   .team .head p{font-weight:300;color:var(--muted);font-size:clamp(15px,1.25vw,18px);line-height:1.7;max-width:460px;justify-self:end}
-  .people{display:grid;grid-template-columns:repeat(5,1fr);gap:22px}
-  .person{position:relative}
-  .person .ph{
-    position:relative;aspect-ratio:4/5;border-radius:18px;overflow:hidden;
-    background:linear-gradient(160deg,#0b1d4d,#040a1f);
-    border:1px solid var(--line);
-    transition:transform .6s var(--ease),border-color .4s,box-shadow .5s;
-  }
-  .person .ph img{
-    width:100%;height:100%;object-fit:cover;object-position:center top;display:block;
-    filter:grayscale(1) contrast(1.08) brightness(.92);
-    transition:filter .6s var(--ease),transform .8s var(--ease);
-  }
-  .person .ph::after{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(to top,rgba(3,6,15,.75) 0%,rgba(3,6,15,0) 55%),
-               linear-gradient(135deg,rgba(29,92,255,.28),rgba(53,214,255,.06) 60%,transparent);
-    pointer-events:none;
-  }
-  .person:hover .ph{transform:translateY(-6px);border-color:var(--cyan-soft);box-shadow:0 30px 60px -30px rgba(53,214,255,.45)}
-  .person:hover .ph img{filter:grayscale(0) contrast(1) brightness(1);transform:scale(1.04)}
-  .person .ph .ini{
-    position:absolute;inset:0;display:none;align-items:center;justify-content:center;
-    font-family:var(--serif);font-size:clamp(40px,4vw,64px);color:rgba(238,243,255,.5);letter-spacing:.04em;
-  }
-  .person .ph.noimg img{display:none}
-  .person .ph.noimg .ini{display:flex}
-  .person .tag{
-    position:absolute;top:12px;left:12px;z-index:2;
-    padding:5px 10px;border-radius:999px;background:rgba(29,92,255,.85);backdrop-filter:blur(6px);
-    font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#fff;font-weight:500;
-  }
-  .person .info{padding:18px 4px 0}
-  .person .name{font-weight:500;font-size:17px;letter-spacing:-.01em}
-  .person .role{font-family:var(--serif);font-style:italic;color:var(--cyan);font-size:16px;margin-top:3px}
-  .person .uni{color:var(--muted);font-size:12.5px;letter-spacing:.06em;margin-top:8px;line-height:1.5}
-  .person .uni span{display:block;text-transform:uppercase;letter-spacing:.16em;font-size:10.5px;opacity:.75;margin-top:4px}
-  .team .foot{margin-top:56px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;color:var(--muted);font-size:13px;letter-spacing:.14em;text-transform:uppercase}
-  .team .foot i{width:34px;height:1px;background:var(--cyan)}
-  @media (max-width:1100px){.people{grid-template-columns:repeat(3,1fr)}}
+  .tzline{margin-top:34px;font-family:var(--serif);font-style:italic;font-size:clamp(18px,1.6vw,23px);line-height:1.45;color:var(--muted);font-variant-numeric:tabular-nums}
+  .tzline b{font-family:var(--sans);font-style:normal;font-weight:500;color:var(--text)}
   @media (max-width:980px){.team .head{grid-template-columns:1fr}.team .head p{justify-self:start}}
-  @media (max-width:640px){.people{grid-template-columns:repeat(2,1fr);gap:14px}.person .info{padding-top:12px}.person .name{font-size:15px}}
-
 
   /* ---------- 04 What we do ---------- */
   .what{padding:12vh 0 10vh;border-top:1px solid var(--line)}
@@ -352,44 +461,8 @@
   .speakers h2{font-weight:200;font-size:clamp(40px,5.6vw,84px);line-height:1;letter-spacing:-.025em}
   .speakers h2 b{font-weight:600}
   .speakers .head p{font-weight:300;color:var(--muted);font-size:clamp(15px,1.25vw,18px);line-height:1.7;max-width:460px;justify-self:end}
-  .spk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-  .spk{
-    text-align:left;background:none;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;
-    display:grid;gap:0;
-  }
-  .spk .ph{
-    position:relative;aspect-ratio:4/5;border-radius:18px;overflow:hidden;border:1px solid var(--line);
-    background:linear-gradient(160deg,#0b1d4d,#040a1f);
-    transition:transform .6s var(--ease),border-color .4s,box-shadow .5s;
-  }
-  .spk .ph img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.08);transition:filter .6s var(--ease),transform .8s var(--ease)}
-  .spk .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(3,6,15,.8),rgba(3,6,15,0) 55%),linear-gradient(135deg,rgba(29,92,255,.25),transparent 60%);pointer-events:none}
-  .spk:hover .ph,.spk:focus-visible .ph{transform:translateY(-6px);border-color:var(--cyan-soft);box-shadow:0 30px 60px -30px rgba(53,214,255,.45)}
-  .spk:hover .ph img{filter:grayscale(0);transform:scale(1.04)}
-  .spk:focus-visible{outline:none}
-  .spk .ph .ini{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:clamp(44px,4.6vw,72px);color:rgba(238,243,255,.45)}
-  .spk .ph.has img+.ini{display:none}
-  .spk .more{
-    position:absolute;right:14px;bottom:14px;z-index:2;width:36px;height:36px;border-radius:50%;
-    border:1px solid rgba(238,243,255,.35);display:flex;align-items:center;justify-content:center;
-    color:#fff;font-size:16px;background:rgba(3,6,15,.35);backdrop-filter:blur(6px);
-    transition:background .3s,transform .4s var(--ease);
-  }
-  .spk:hover .more{background:var(--electric);border-color:transparent;transform:rotate(45deg)}
-  .spk .info{padding:18px 4px 0}
-  .spk .name{font-weight:500;font-size:17px;letter-spacing:.06em;text-transform:uppercase}
-  .spk .pos{font-family:var(--serif);font-style:italic;color:var(--cyan);font-size:16px;margin-top:4px}
-  .spk .short{color:var(--muted);font-size:13.5px;line-height:1.55;margin-top:8px;font-weight:300}
-  .spk.soon .ph{border-style:dashed;background:rgba(255,255,255,.015)}
-  .spk.soon .ph .ini{font-family:var(--sans);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
-  .spk.soon{cursor:default}
-  .spk.soon:hover .ph{transform:none;box-shadow:none;border-color:var(--line)}
-  .spk.soon .more{display:none}
-  .spk.soon .name{color:var(--muted)}
-  .spk-foot{margin-top:48px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px;letter-spacing:.14em;text-transform:uppercase}
-  @media (max-width:1100px){.spk-grid{grid-template-columns:repeat(3,1fr)}}
+  .spk-foot{margin-top:40px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px;letter-spacing:.14em;text-transform:uppercase}
   @media (max-width:980px){.speakers .head{grid-template-columns:1fr}.speakers .head p{justify-self:start}}
-  @media (max-width:640px){.spk-grid{grid-template-columns:repeat(2,1fr);gap:14px}}
 
   /* speaker profile dialog */
   dialog.profile{
@@ -403,11 +476,11 @@
   dialog.profile .pic img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1)}
   dialog.profile .pic .ini{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:96px;color:rgba(238,243,255,.4)}
   dialog.profile .pic.has .ini{display:none}
-  dialog.profile .txt{padding:44px 44px 40px;display:flex;flex-direction:column;gap:14px}
+  dialog.profile .txt{padding:44px 44px 40px;display:flex;flex-direction:column;gap:14px;max-height:min(86vh,760px);overflow-y:auto}
   dialog.profile .txt .lbl{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--cyan)}
   dialog.profile h3{font-weight:300;font-size:clamp(30px,3.2vw,44px);letter-spacing:-.02em;line-height:1.05}
   dialog.profile .pos{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:19px}
-  dialog.profile .bio{color:var(--muted);font-weight:300;line-height:1.7;font-size:15.5px;margin-top:6px}
+  dialog.profile .bio{color:var(--muted);font-weight:300;line-height:1.7;font-size:15.5px;margin-top:6px;white-space:pre-line}
   dialog.profile .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:18px}
   dialog.profile .close{
     position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);
@@ -498,7 +571,9 @@
 
 
   @media (prefers-reduced-motion:reduce){
-    .aurora span,.scroll-hint i{animation:none}
+    .aurora span,.scroll-hint i,.sl-place .t::before{animation:none}
+    .hero h1 b{animation:none;background-position:0 0}
+    .sl-pic img,.mnav,.mnav a{transition:none}
     .rv,.stat{transition:none;opacity:1;transform:none}
     .belief h2 .w{transition:none;color:var(--text);transform:none;filter:none}
   }
@@ -512,19 +587,40 @@
 <header id="header">
   <div class="wrap">
     <nav>
-      <a class="brand" href="#top" aria-label="Nestor Collective"><span class="n">Nestor</span><span class="c">Collective</span></a>
+      <a class="brand" href="#top" aria-label="NESTOR Collective"><span class="n">Nestor</span><span class="c">Collective</span></a>
       <ul class="links">
-        <li><a href="#belief">Belief</a></li>
+        <li><a href="#story">Story</a></li>
         <li><a href="#community">Community</a></li>
         <li><a href="#what">What we do</a></li>
         <li><a href="#speakers">Speakers</a></li>
         <li><a href="#team">Team</a></li>
         <li><a href="#partners">Partners</a></li>
       </ul>
-      <a class="btn btn-primary" href="#join">Join Nestor <span class="arrow">→</span></a>
+      <div class="nav-right">
+        <a class="btn btn-primary" href="#join">Join NESTOR <span class="arrow">→</span></a>
+        <button class="menu-btn" id="menuBtn" type="button" aria-controls="mnav" aria-expanded="false" aria-label="Open menu"><i></i><i></i></button>
+      </div>
     </nav>
   </div>
 </header>
+
+<nav class="mnav" id="mnav" aria-label="Sections">
+  <ol>
+    <li><a href="#top"><small>01</small>Home</a></li>
+    <li><a href="#belief"><small>02</small>The belief</a></li>
+    <li><a href="#story"><small>—</small>Why NESTOR</a></li>
+    <li><a href="#community"><small>03</small>The community</a></li>
+    <li><a href="#what"><small>04</small>What we do</a></li>
+    <li><a href="#speakers"><small>05</small>Speakers</a></li>
+    <li><a href="#team"><small>06</small>The people</a></li>
+    <li><a href="#partners"><small>07</small>Partners</a></li>
+    <li><a href="#join"><small>08</small>Join NESTOR</a></li>
+  </ol>
+  <div class="mfoot">
+    <a class="btn btn-primary" href="#join">Join NESTOR <span class="arrow">→</span></a>
+    <p>Built by students · 6 countries · 3 continents</p>
+  </div>
+</nav>
 
 <main id="top">
 
@@ -532,15 +628,15 @@
   <section class="hero">
     <div class="wrap">
       <div>
-        <div class="eyebrow rv">International student community</div>
-        <h1 class="rv d1">Connecting<br>Minds Through<br><b>Negotiation</b><span class="dot">.</span></h1>
-        <p class="lead rv d2">Nestor Collective is an international non-profit community connecting university students through negotiation and strategic communication — with each other, and with the experts shaping the field.</p>
+        <div class="eyebrow rv">Connecting minds through negotiation</div>
+        <h1 class="rv d1">Tomorrow's leaders build <b>bridges</b> that change the world<span class="dot">.</span></h1>
+        <p class="lead rv d2">NESTOR Collective is an international non-profit community connecting university students through negotiation, strategic communication and leadership, while opening doors to exceptional experts, ideas and opportunities from around the world.</p>
         <div class="cta rv d3">
-          <a class="btn btn-primary" href="#join">Join Nestor <span class="arrow">→</span></a>
-          <a class="btn btn-ghost" href="#belief">Discover Nestor</a>
+          <a class="btn btn-primary" href="#join">Join NESTOR <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="#story">Our story</a>
         </div>
         <div class="meta rv d4">
-          <span>6 countries</span><span>3 continents</span><span>Launching September 2026</span>
+          <span>Built by students, for students</span><span>6 countries</span><span>3 continents</span><span>Launching September 2026</span>
         </div>
       </div>
     </div>
@@ -561,6 +657,30 @@
     </div>
   </section>
 
+  <!-- WHY NESTOR -->
+  <section class="story" id="story">
+    <div class="wrap">
+      <div class="sec-label rv">Why NESTOR</div>
+      <div class="grid">
+        <div class="rv d1">
+          <p class="greek" lang="grc">τοῦ καὶ ἀπὸ γλώσσης <span>μέλιτος</span> γλυκίων ῥέεν αὐδή</p>
+          <p class="trans">“From his tongue flowed a voice sweeter than <em>honey</em>.”</p>
+          <p class="src">Homer · Iliad · Book I, line 249 · on Nestor, king of Pylos</p>
+        </div>
+        <div class="body rv d2">
+          <h2>The oldest voice in the room.<br><b>Now, the youngest.</b></h2>
+          <p>In the <em>Iliad</em>, when Agamemnon and Achilles are about to tear the Greek camp apart, it is Nestor who rises between them. He has outlived two generations of men and rules over a third. He doesn't reach for a sword. He asks them to listen.</p>
+          <p>Almost three thousand years later, we gave his name to a community of students, because we believe what he believed: <strong>the right words, said at the right moment, can move what force cannot.</strong></p>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="tl rv"><div class="yr">2024</div><p>In Milan, Simone Borgogno starts being mentored by former FBI agent Joe Navarro. The experiences that lead to NESTOR begin here.</p></div>
+        <div class="tl now rv d1"><div class="yr">Today<em>building</em></div><p>Students from six countries across three continents are building NESTOR together, across time zones.</p></div>
+        <div class="tl rv d2"><div class="yr">Sept 2026<em>launch</em></div><p>NESTOR opens its doors to students, associations and partners around the world.</p></div>
+      </div>
+    </div>
+  </section>
+
   <!-- 03 COMMUNITY -->
   <section class="community" id="community">
     <div class="wrap">
@@ -572,7 +692,7 @@
 
       <div class="globe-wrap">
         <div class="globe-stage">
-          <canvas id="globe" aria-label="Interactive globe showing the cities of the Nestor network"></canvas>
+          <canvas id="globe" aria-label="Interactive globe showing the cities of the NESTOR network"></canvas>
           <div class="globe-hint">Drag to explore</div>
         </div>
         <div class="stats" id="stats">
@@ -593,7 +713,7 @@
       <div class="sec-label rv"><b>04</b> What we do</div>
       <div class="head">
         <h2 class="rv d1">Learning. Networking.<br><b>Opportunities.</b></h2>
-        <p class="rv d2">Three things every member gets from Nestor, whatever their university or country.</p>
+        <p class="rv d2">Three things every member gets from NESTOR, whatever their university or country.</p>
       </div>
       <div class="pillars">
         <article class="pillar rv">
@@ -629,11 +749,11 @@
         </article>
       </div>
 
-      <div class="sec-label rv programs-label">Inside Nestor</div>
+      <div class="sec-label rv programs-label">Inside NESTOR</div>
       <div class="programs">
         <div class="program rv"><span class="when">Always on</span><h4>Global Student Network</h4><p>An international community bringing together ambitious students from different universities and countries, united by an interest in negotiation and strategic communication.</p></div>
         <div class="program rv d1"><span class="when">Every month</span><h4>Global Thought Leaders</h4><p>A webinar featuring internationally recognized speakers, followed by a Q&amp;A session with students from partner associations.</p></div>
-        <div class="program rv d2"><span class="when">End of academic year</span><h4>Annual Review &amp; Nestor Summit</h4><p>The speakers' contributions and the ideas that emerged, brought together in a shared summary and a final in-person event.</p></div>
+        <div class="program rv d2"><span class="when">End of academic year</span><h4>Annual Review &amp; NESTOR Summit</h4><p>The speakers' contributions and the ideas that emerged, brought together in a shared summary and a final in-person event.</p></div>
       </div>
     </div>
   </section>
@@ -644,10 +764,17 @@
       <div class="sec-label rv"><b>05</b> Speakers</div>
       <div class="head">
         <h2 class="rv d1">People worth<br><b>listening to.</b></h2>
-        <p class="rv d2">Experts who have shaped how the world negotiates, communicates and leads. Click a speaker to read their profile.</p>
+        <p class="rv d2">Experts who have shaped how the world negotiates, communicates and leads. One conversation a month, open to students from every partner association.</p>
       </div>
-      <div class="spk-grid" id="spkGrid"></div>
-      <div class="spk-foot rv"><span>The Nestor Speaker Archive grows with every session</span><span>Monthly · Global Thought Leaders</span></div>
+      <div class="slider rv" id="spkSlider">
+        <div class="sl-track" tabindex="0" aria-roledescription="carousel" aria-label="NESTOR speakers"></div>
+      <div class="sl-bar">
+        <div class="sl-count" aria-live="polite"><b>01</b> / <span>01</span></div>
+        <div class="sl-index" role="group" aria-label="Choose a speaker"></div>
+        <div class="sl-nav"><button class="sl-prev" type="button" aria-label="Previous">←</button><button class="sl-next" type="button" aria-label="Next">→</button></div>
+      </div>
+      </div>
+      <div class="spk-foot rv"><span>The NESTOR Speaker Archive grows with every session</span><span>Monthly · Global Thought Leaders</span></div>
     </div>
   </section>
 
@@ -656,7 +783,7 @@
     <div class="box">
       <div class="pic" id="pPic"><img alt="" id="pImg"><span class="ini" id="pIni"></span></div>
       <div class="txt">
-        <span class="lbl">Nestor Speaker</span>
+        <span class="lbl">NESTOR Speaker</span>
         <h3 id="pName"></h3>
         <div class="pos" id="pPos"></div>
         <p class="bio" id="pBio"></p>
@@ -668,13 +795,20 @@
   <!-- 06 TEAM -->
   <section class="team" id="team">
     <div class="wrap">
-      <div class="sec-label rv"><b>06</b> The people behind Nestor</div>
+      <div class="sec-label rv"><b>06</b> The people behind NESTOR</div>
       <div class="head">
         <h2 class="rv d1">Built across<br><b>borders.</b></h2>
-        <p class="rv d2">Nestor is already being built by an international team of students. Different universities, different countries, one project.</p>
+        <p class="rv d2">NESTOR is built by students, for students, from Milan to San Francisco. These are some of the people making it happen.</p>
       </div>
-      <div class="people" id="people"></div>
-      <div class="foot rv"><i></i><span>6 countries · 3 continents · one team</span></div>
+      <div class="slider rv" id="teamSlider">
+        <div class="sl-track" tabindex="0" aria-roledescription="carousel" aria-label="The people behind NESTOR"></div>
+      <div class="sl-bar">
+        <div class="sl-count" aria-live="polite"><b>01</b> / <span>01</span></div>
+        <div class="sl-index" role="group" aria-label="Choose a person"></div>
+        <div class="sl-nav"><button class="sl-prev" type="button" aria-label="Previous">←</button><button class="sl-next" type="button" aria-label="Next">→</button></div>
+      </div>
+      </div>
+      <p class="tzline rv" id="tzLine"></p>
     </div>
   </section>
 
@@ -683,7 +817,7 @@
     <div class="wrap">
       <div class="sec-label rv"><b>07</b> Partners</div>
       <div class="head">
-        <h2 class="rv d1">Stronger<br><b>together.</b></h2>
+        <h2 class="rv d1">The network<br><b>behind the network.</b></h2>
         <p class="rv d2">Two kinds of partners with two different roles: the communities that make up the network, and the organizations that support it.</p>
       </div>
 
@@ -691,7 +825,7 @@
         <div class="side">
           <span class="kind">Community</span>
           <h3>Student associations &amp; university communities</h3>
-          <p>The associations and university groups that are part of the Nestor network.</p>
+          <p>The associations and university groups that are part of the NESTOR network.</p>
         </div>
         <div class="logos" id="logosCom"></div>
       </div>
@@ -700,7 +834,7 @@
         <div class="side">
           <span class="kind">Supporters</span>
           <h3>Companies &amp; organizations</h3>
-          <p>Organizations that support Nestor and its mission of accessible, high-level learning.</p>
+          <p>Organizations that support NESTOR and its mission of accessible, high-level learning.</p>
         </div>
         <div class="logos" id="logosSup"></div>
       </div>
@@ -716,11 +850,11 @@
   <section class="join" id="join">
     <div class="wrap">
       <div>
-        <div class="sec-label rv"><b>08</b> Join Nestor</div>
+        <div class="sec-label rv"><b>08</b> Join NESTOR</div>
         <span class="we rv d1">Be part of the community.</span>
-        <h2 class="rv d1">Tomorrow's leaders<br>build <b>bridges.</b></h2>
-        <p class="lead rv d2">Whether you're a student, an association or an organization, there's a place for you in Nestor. Tell us who you are and we'll get in touch.</p>
-        <a class="big rv d3" href="#joinForm">Join Nestor <span class="arrow">→</span></a>
+        <h2 class="rv d1">There's a seat<br>at the <b>table</b><br>for you.</h2>
+        <p class="lead rv d2">Whether you're a student, an association or an organization, there's a place for you in NESTOR. Tell us who you are and we'll get in touch.</p>
+        <a class="big rv d3" href="#joinForm">Join NESTOR <span class="arrow">→</span></a>
         <div class="who rv d4"><span class="pill">Students</span><span class="pill">Student associations</span><span class="pill">Universities</span><span class="pill">Organizations</span></div>
       </div>
       <form class="form rv d2" id="joinForm" novalidate>
@@ -736,7 +870,7 @@
         <div class="field"><label for="fWho">I am a</label>
           <select id="fWho" name="who"><option>Student</option><option>Student association</option><option>University</option><option>Company or organization</option><option>Speaker</option></select>
         </div>
-        <div class="field"><label for="fMsg">Why Nestor? <span style="opacity:.6;letter-spacing:0;text-transform:none">(optional)</span></label><textarea id="fMsg" name="message"></textarea></div>
+        <div class="field"><label for="fMsg">Why NESTOR? <span style="opacity:.6;letter-spacing:0;text-transform:none">(optional)</span></label><textarea id="fMsg" name="message"></textarea></div>
         <button class="btn btn-primary" type="submit">Send request <span class="arrow">→</span></button>
         <div class="note">We'll answer personally. No newsletters, no spam.</div>
         <div class="ok" id="joinOk"></div>
@@ -751,13 +885,13 @@
     <div class="top">
       <div>
         <a class="brand" href="#top"><span class="n">Nestor</span><span class="c">Collective</span></a>
-        <div class="claim">“Because tomorrow's leaders build bridges that change the world.”</div>
+        <div class="claim">Built by students, for students. Six countries, three continents, one table.</div>
       </div>
       <div><h5>Explore</h5><ul><li><a href="#belief">The belief</a></li><li><a href="#community">Community</a></li><li><a href="#what">What we do</a></li><li><a href="#speakers">Speakers</a></li></ul></div>
-      <div><h5>Nestor</h5><ul><li><a href="#team">Team</a></li><li><a href="#partners">Partners</a></li><li><a href="#join">Join Nestor</a></li></ul></div>
+      <div><h5>NESTOR</h5><ul><li><a href="#team">Team</a></li><li><a href="#partners">Partners</a></li><li><a href="#join">Join NESTOR</a></li></ul></div>
       <div><h5>Follow</h5><ul><li><a href="#" rel="noopener">LinkedIn</a></li><li><a href="#" rel="noopener">Instagram</a></li><li><a href="mailto:">Email</a></li></ul></div>
     </div>
-    <div class="bottom"><span>© 2026 Nestor Collective · International non-profit community</span><span>Negotiation · Strategic communication · Leadership · Diplomacy</span></div>
+    <div class="bottom"><span>© 2026 NESTOR Collective · International non-profit community</span><span>Negotiation · Strategic communication · Leadership · Diplomacy</span></div>
   </div>
 </footer>
 
@@ -831,59 +965,138 @@ addEventListener('load',()=>setTimeout(rvCheck,300));
 const cityWrap=document.getElementById('cities');
 CITIES.forEach((c,i)=>{const p=document.createElement('span');p.className='pill';p.textContent=c.name+' · '+c.country;p.dataset.i=i;cityWrap.appendChild(p);});
 
-/* ---------- team ---------- */
+/* ---------- slider (speakers + team): one profile at a time, native swipe ---------- */
+function makeSlider(root, items, render, label){
+  const track=root.querySelector('.sl-track'), idx=root.querySelector('.sl-index'),
+        cur=root.querySelector('.sl-count b'), tot=root.querySelector('.sl-count span'),
+        prev=root.querySelector('.sl-prev'), next=root.querySelector('.sl-next');
+  track.innerHTML=items.map(render).join('');
+  const slides=[...track.children];
+  slides.forEach((el,i)=>{el.setAttribute('role','group');el.setAttribute('aria-roledescription','slide');el.setAttribute('aria-label',(i+1)+' of '+slides.length);});
+  items.forEach((it,i)=>{const b=document.createElement('button');b.type='button';b.textContent=label(it);b.addEventListener('click',()=>go(i));idx.appendChild(b);});
+  const tabs=[...idx.children];
+  tot.textContent=String(slides.length).padStart(2,'0');
+  const smooth=!matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let at=-1;
+  function go(i){i=Math.max(0,Math.min(slides.length-1,i));track.scrollTo({left:i*track.clientWidth,behavior:smooth?'smooth':'auto'});}
+  function sync(){
+    const i=Math.round(track.scrollLeft/Math.max(1,track.clientWidth));
+    if(i===at)return; at=i;
+    slides.forEach((el,k)=>{el.classList.toggle('is-active',k===i);el.inert=k!==i;});
+    tabs.forEach((b,k)=>b.setAttribute('aria-current',k===i?'true':'false'));
+    cur.textContent=String(i+1).padStart(2,'0');
+    prev.disabled=i===0; next.disabled=i===slides.length-1;
+  }
+  let raf=0;
+  track.addEventListener('scroll',()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(sync);},{passive:true});
+  prev.addEventListener('click',()=>go(at-1));
+  next.addEventListener('click',()=>go(at+1));
+  track.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();go(at+1);}if(e.key==='ArrowLeft'){e.preventDefault();go(at-1);}});
+  addEventListener('resize',()=>{track.scrollLeft=Math.max(0,at)*track.clientWidth;});
+  sync();
+}
+const IMG=(src,alt)=>src?`<img src="${src}" alt="${alt}" onload="this.parentElement.classList.add('has')" onerror="this.remove()">`:'';
+
+/* ---------- team (photos in img/equipo/; add `quote` to show a line in their own words) ---------- */
 const TEAM = [
-  { name:'Simone Borgogno',  role:'Founder & Executive Director', uni:'IULM University',                 city:'Milan',         img:'img/equipo/simone-borgogno.webp',  founder:true },
-  { name:'Alessandro Bodini',role:'Advisory Board',               uni:'Stockholm School of Economics',   city:'Stockholm',     img:'img/equipo/alessandro-bodini.webp' },
-  { name:'Tommaso Panizza',  role:'Advisory Board',               uni:'University of Turin',             city:'Turin',         img:'img/equipo/tommaso-panizza.webp' },
-  { name:'Mattia Porcheri',  role:'Advisory Board',               uni:'Università Cattolica',            city:'Milan',         img:'img/equipo/mattia-porcheri.webp' },
-  { name:'Gianluca Basta',   role:'Advisory Board',               uni:'City College of San Francisco',   city:'San Francisco', img:'img/equipo/gianluca-basta.webp' },
+  { first:'Simone', last:'Borgogno', role:'Founder & Executive Director', uni:'IULM University', city:'Milan', country:'Italy', coords:'45.46° N · 9.19° E', tz:'Europe/Rome', img:'img/equipo/simone-borgogno.webp', founder:true,
+    bio:'A student at IULM University in Milan, passionate about communication, negotiation and human behavior. Since 2024 he has been mentored by Joe Navarro, and he has collaborated with Giuseppe Conti and CABL, a Swiss boutique consultancy focused on negotiation training for Fortune 500 companies. NESTOR grew out of those experiences: connecting professional experience with the next generation.' },
+  { first:'Alessandro', last:'Bodini', role:'Advisory Board', uni:'Stockholm School of Economics', city:'Stockholm', country:'Sweden', coords:'59.33° N · 18.07° E', tz:'Europe/Stockholm', img:'img/equipo/alessandro-bodini.webp' },
+  { first:'Tommaso', last:'Panizza', role:'Advisory Board', uni:'University of Turin', city:'Turin', country:'Italy', coords:'45.07° N · 7.69° E', tz:'Europe/Rome', img:'img/equipo/tommaso-panizza.webp' },
+  { first:'Mattia', last:'Porcheri', role:'Advisory Board', uni:'Università Cattolica', city:'Milan', country:'Italy', coords:'45.46° N · 9.19° E', tz:'Europe/Rome', img:'img/equipo/mattia-porcheri.webp' },
+  { first:'Gianluca', last:'Basta', role:'Advisory Board', uni:'City College of San Francisco', city:'San Francisco', country:'California, USA', coords:'37.77° N · 122.42° W', tz:'America/Los_Angeles', img:'img/equipo/gianluca-basta.webp' },
 ];
+makeSlider(document.getElementById('teamSlider'), TEAM, m=>`<article class="slide">
+    <div class="sl-pic">${m.founder?'<span class="badge">Founder</span>':''}${IMG(m.img,m.first+' '+m.last)}<span class="ini">${m.first[0]}${m.last[0]}</span></div>
+    <div class="sl-txt">
+      <span class="sl-ghost" aria-hidden="true">${m.city}</span>
+      <span class="sl-kicker">${m.role}</span>
+      <h3 class="sl-name">${m.first} <b>${m.last}</b></h3>
+      <div class="sl-pos">${m.uni}</div>
+      <p class="sl-desc">${m.bio||('Student at '+m.uni+' and member of the NESTOR Advisory Board.')}</p>
+      ${m.quote?`<blockquote class="sl-quote">“${m.quote}”</blockquote>`:''}
+      <div class="sl-place"><span>${m.city}, ${m.country}</span><span>${m.coords}</span><span class="t" data-tz="${m.tz}">Local time</span></div>
+    </div>
+  </article>`, m=>m.first);
+
+/* live local time per member + the time-zone line under the team */
 (function(){
-  const wrap=document.getElementById('people');
-  TEAM.forEach((m,i)=>{
-    const ini=m.name.split(' ').map(w=>w[0]).join('');
-    const el=document.createElement('article');el.className='person rv'+(i?' d'+Math.min(i,4):'');
-    el.innerHTML='<div class="ph">'+(m.founder?'<span class="tag">Founder</span>':'')+'<img src="'+m.img+'" alt="'+m.name+'" loading="lazy" onerror="this.parentElement.classList.add(\'noimg\')"><span class="ini">'+ini+'</span></div>'+
-      '<div class="info"><div class="name">'+m.name+'</div><div class="role">'+m.role+'</div><div class="uni">'+m.uni+'<span>'+m.city+'</span></div></div>';
-    wrap.appendChild(el);io.observe(el);
-  });
+  const f=tz=>new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:tz}).format(new Date());
+  function tick(){
+    document.querySelectorAll('[data-tz]').forEach(el=>el.textContent='Local time '+f(el.dataset.tz));
+    document.getElementById('tzLine').innerHTML='Right now it\u2019s <b>'+f('Europe/Rome')+'</b> in Milan and <b>'+f('America/Los_Angeles')+'</b> in San Francisco. Somewhere on the team, someone is always awake.';
+  }
+  tick(); setInterval(tick,20000);
 })();
 
-/* ---------- speakers (data-driven; photos go in img/speakers/) ---------- */
+/* ---------- speakers (photos in img/speakers/) ---------- */
 const SPEAKERS = [
-  { name:'Joe Navarro', pos:'Former FBI Special Agent · Nonverbal Communication & Human Behavior', short:'Internationally recognized expert in nonverbal communication and human behavior.', img:'img/speakers/joe-navarro.webp',
-    bio:'Former FBI Special Agent and internationally recognized expert in nonverbal communication and human behavior. He has mentored Nestor\'s founder since 2024 and is one of the voices that shaped the idea of a global student network built around negotiation and strategic communication.',
-    tags:['Nonverbal communication','Human behavior','Negotiation'] },
-  { soon:true, name:'Speaker to be announced', pos:'Global Thought Leaders · monthly session' },
-  { soon:true, name:'Speaker to be announced', pos:'Global Thought Leaders · monthly session' },
-  { soon:true, name:'Speaker to be announced', pos:'Global Thought Leaders · monthly session' },
+  { first:'Joe', last:'Navarro', kicker:'Global Thought Leaders', pos:'Nonverbal communications expert and former FBI special agent', img:'img/speakers/joe-navarro.webp',
+    short:'Recruited by the FBI at 23, he spent 25 years there as an agent and supervisor in counterintelligence and counterterrorism, where reading people became his craft.',
+    facts:[['25','Years at the FBI'],['2003','Retired from the FBI'],['2024','Mentor to NESTOR\u2019s founder']],
+    bio:[
+      'Joe Navarro was approached by the FBI at just 23, making him one of the youngest agents the Bureau had ever recruited. He went on to serve for 25 years as an agent and supervisor in counterintelligence and counterterrorism.',
+      'It was in that work that he developed his expertise in reading nonverbal behavior, a skill that made him an effective spy-catcher and led him to train fellow agents and members of the intelligence community.',
+      'After retiring from the FBI in 2003, he turned to speaking and consulting for major companies around the world, and he is today considered one of the leading authorities on nonverbal communication in business. Since 2024 he has mentored NESTOR\u2019s founder, Simone Borgogno.'
+    ],
+    tags:['Nonverbal communication','Human behavior','Counterintelligence','Business'] },
+  { soon:true, kicker:'Next session', desc:'A new voice every month: negotiators, diplomats, experts and CEOs, followed by an open Q&A with students from our partner associations.' },
 ];
+makeSlider(document.getElementById('spkSlider'), SPEAKERS, (sp,i)=> sp.soon ? `<article class="slide">
+    <div class="sl-pic soon"><span class="ini"><b>?</b>To be announced</span></div>
+    <div class="sl-txt">
+      <span class="sl-ghost" aria-hidden="true">Next</span>
+      <span class="sl-kicker">${sp.kicker}</span>
+      <h3 class="sl-name">Who's <b>next?</b></h3>
+      <p class="sl-desc">${sp.desc}</p>
+      <div class="sl-actions"><a class="btn btn-ghost" href="#join">Get notified <span class="arrow">→</span></a></div>
+    </div>
+  </article>` : `<article class="slide">
+    <div class="sl-pic" data-profile="${i}">${IMG(sp.img,sp.first+' '+sp.last)}<span class="ini">${sp.first[0]}${sp.last[0]}</span></div>
+    <div class="sl-txt">
+      <span class="sl-ghost" aria-hidden="true">${sp.last}</span>
+      <span class="sl-kicker">${sp.kicker}</span>
+      <h3 class="sl-name">${sp.first} <b>${sp.last}</b></h3>
+      <div class="sl-pos">${sp.pos}</div>
+      <p class="sl-desc">${sp.short}</p>
+      <div class="sl-facts">${(sp.facts||[]).map(f=>`<div class="sl-fact"><b>${f[0]}</b><span>${f[1]}</span></div>`).join('')}</div>
+      <div class="sl-actions"><button class="btn btn-primary" type="button" data-profile="${i}">Read full profile <span class="arrow">+</span></button></div>
+    </div>
+  </article>`, sp=>sp.soon?'Next speaker':sp.first+' '+sp.last);
+
 (function(){
-  const grid=document.getElementById('spkGrid'), dlg=document.getElementById('profile');
-  SPEAKERS.forEach((sp,i)=>{
-    const ini=sp.name.split(' ').slice(0,2).map(w=>w[0]).join('');
-    const el=document.createElement(sp.soon?'div':'button');
-    el.className='spk rv'+(sp.soon?' soon':'')+(i?' d'+Math.min(i,4):'');
-    if(!sp.soon)el.type='button';
-    el.innerHTML='<div class="ph">'+(sp.img?'<img src="'+sp.img+'" alt="'+sp.name+'" loading="lazy" onload="this.parentElement.classList.add(\'has\')" onerror="this.remove()">':'')+'<span class="ini">'+(sp.soon?'Coming soon':ini)+'</span>'+(sp.soon?'':'<span class="more">+</span>')+'</div>'+
-      '<div class="info"><div class="name">'+sp.name+'</div><div class="pos">'+sp.pos+'</div>'+(sp.short?'<div class="short">'+sp.short+'</div>':'')+'</div>';
-    if(!sp.soon)el.addEventListener('click',()=>open(sp,ini));
-    grid.appendChild(el);io.observe(el);
-  });
-  function open(sp,ini){
-    document.getElementById('pName').textContent=sp.name;
-    document.getElementById('pPos').textContent=sp.pos;
-    document.getElementById('pBio').textContent=sp.bio||'';
-    document.getElementById('pIni').textContent=ini;
+  const dlg=document.getElementById('profile');
+  function open(sp){
     const pic=document.getElementById('pPic'), img=document.getElementById('pImg');
-    pic.classList.remove('has');
-    img.style.display='none';
-    if(sp.img){img.alt=sp.name;img.onload=()=>{img.style.display='';pic.classList.add('has');};img.onerror=()=>{img.style.display='none';};img.src=sp.img;} else {img.removeAttribute('src');}
+    document.getElementById('pName').textContent=sp.first+' '+sp.last;
+    document.getElementById('pPos').textContent=sp.pos;
+    document.getElementById('pBio').textContent=(sp.bio||[]).join('\n\n');
+    document.getElementById('pIni').textContent=sp.first[0]+sp.last[0];
     document.getElementById('pTags').innerHTML=(sp.tags||[]).map(t=>'<span class="pill">'+t+'</span>').join('');
+    pic.classList.remove('has'); img.style.display='none';
+    if(sp.img){img.alt=sp.first+' '+sp.last;img.onload=()=>{img.style.display='';pic.classList.add('has');};img.onerror=()=>{img.style.display='none';};img.src=sp.img;}
     dlg.showModal();
   }
-  dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
+  document.getElementById('spkSlider').addEventListener('click',e=>{const t=e.target.closest('[data-profile]');if(t)open(SPEAKERS[+t.dataset.profile]);});
+  dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close();});
+})();
+
+/* ---------- mobile menu ---------- */
+(function(){
+  const btn=document.getElementById('menuBtn'), nav=document.getElementById('mnav'), links=[...nav.querySelectorAll('ol a')];
+  links.forEach((a,i)=>a.style.transitionDelay=(0.05+i*0.035)+'s');
+  function set(open){
+    document.body.classList.toggle('menu-open',open);
+    btn.setAttribute('aria-expanded',String(open));
+    btn.setAttribute('aria-label',open?'Close menu':'Open menu');
+    nav.inert=!open;
+    if(open)links[0].focus({preventScroll:true});
+  }
+  btn.addEventListener('click',()=>set(!document.body.classList.contains('menu-open')));
+  links.forEach(a=>a.addEventListener('click',()=>set(false)));
+  addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('menu-open')){set(false);btn.focus();}});
+  addEventListener('resize',()=>{if(innerWidth>1100&&document.body.classList.contains('menu-open'))set(false);});
+  nav.inert=true;
 })();
 
 /* ---------- partners (logos go in img/partners/) ---------- */
