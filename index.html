@@ -7,7 +7,7 @@
 <meta name="description" content="NESTOR Collective is an international non-profit community connecting university students through negotiation, strategic communication and leadership, while opening doors to exceptional experts, ideas and opportunities from around the world.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=GFS+Didot&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#03060f;
@@ -303,26 +303,17 @@
 
   /* ---------- Why NESTOR (story) ---------- */
   .story{padding:14vh 0 12vh;border-top:1px solid var(--line)}
-  .story .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,6vw,88px);align-items:start}
-  .story .greek{font-family:'GFS Didot',Georgia,'Times New Roman',serif;font-size:clamp(28px,3.3vw,50px);line-height:1.28;color:var(--text);text-wrap:balance}
-  .story .greek span{color:var(--cyan);text-shadow:0 0 26px rgba(53,214,255,.45)}
-  .story .trans{margin-top:24px;font-family:var(--serif);font-style:italic;font-size:clamp(20px,1.8vw,27px);line-height:1.35;color:var(--muted);max-width:30ch}
-  .story .trans em{color:var(--text)}
-  .story .src{margin-top:16px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);opacity:.8}
   .story h2{font-weight:200;font-size:clamp(34px,4vw,60px);line-height:1.02;letter-spacing:-.025em;text-wrap:balance}
   .story h2 b{font-weight:600}
-  .story .body p{margin-top:22px;color:var(--muted);font-weight:300;font-size:clamp(15px,1.2vw,17.5px);line-height:1.75;max-width:54ch}
-  .story .body p strong{color:var(--text);font-weight:500}
-  .timeline{position:relative;margin-top:clamp(56px,8vw,96px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .timeline{position:relative;margin-top:clamp(48px,6vw,80px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
   .timeline::before{content:"";position:absolute;left:0;right:0;top:7px;height:1px;background:linear-gradient(90deg,var(--cyan),rgba(53,214,255,.12))}
   .tl{position:relative;padding:36px 32px 0 0}
   .tl::before{content:"";position:absolute;top:0;left:0;width:15px;height:15px;border-radius:50%;background:var(--bg);border:1px solid var(--cyan);box-shadow:0 0 14px rgba(53,214,255,.5)}
   .tl.now::before{background:var(--cyan)}
   .tl .yr{font-weight:200;font-size:clamp(30px,2.8vw,42px);letter-spacing:-.02em;line-height:1}
   .tl .yr em{margin-left:8px;font-family:var(--serif);font-size:.55em;color:var(--cyan)}
-  .tl p{margin-top:12px;color:var(--muted);font-weight:300;font-size:15px;line-height:1.6;max-width:32ch}
+  .tl p{margin-top:12px;color:var(--muted);font-weight:300;font-size:15px;line-height:1.6;max-width:30ch}
   @media (max-width:980px){
-    .story .grid{grid-template-columns:1fr}
     .timeline{grid-template-columns:1fr;gap:34px}
     .timeline::before{left:7px;right:auto;top:0;bottom:0;width:1px;height:auto;background:linear-gradient(180deg,var(--cyan),rgba(53,214,255,.12))}
     .tl{padding:0 0 0 42px}
@@ -589,11 +580,11 @@
     <nav>
       <a class="brand" href="#top" aria-label="NESTOR Collective"><span class="n">Nestor</span><span class="c">Collective</span></a>
       <ul class="links">
-        <li><a href="#story">Story</a></li>
         <li><a href="#community">Community</a></li>
         <li><a href="#what">What we do</a></li>
         <li><a href="#speakers">Speakers</a></li>
         <li><a href="#team">Team</a></li>
+        <li><a href="#story">Story</a></li>
         <li><a href="#partners">Partners</a></li>
       </ul>
       <div class="nav-right">
@@ -608,11 +599,11 @@
   <ol>
     <li><a href="#top"><small>01</small>Home</a></li>
     <li><a href="#belief"><small>02</small>The belief</a></li>
-    <li><a href="#story"><small>—</small>Why NESTOR</a></li>
     <li><a href="#community"><small>03</small>The community</a></li>
     <li><a href="#what"><small>04</small>What we do</a></li>
     <li><a href="#speakers"><small>05</small>Speakers</a></li>
     <li><a href="#team"><small>06</small>The people</a></li>
+    <li><a href="#story"><small>—</small>Our story</a></li>
     <li><a href="#partners"><small>07</small>Partners</a></li>
     <li><a href="#join"><small>08</small>Join NESTOR</a></li>
   </ol>
@@ -628,15 +619,11 @@
   <section class="hero">
     <div class="wrap">
       <div>
-        <div class="eyebrow rv">Connecting minds through negotiation</div>
         <h1 class="rv d1">Tomorrow's leaders build <b>bridges</b> that change the world<span class="dot">.</span></h1>
         <p class="lead rv d2">NESTOR Collective is an international non-profit community connecting university students through negotiation, strategic communication and leadership, while opening doors to exceptional experts, ideas and opportunities from around the world.</p>
         <div class="cta rv d3">
           <a class="btn btn-primary" href="#join">Join NESTOR <span class="arrow">→</span></a>
           <a class="btn btn-ghost" href="#story">Our story</a>
-        </div>
-        <div class="meta rv d4">
-          <span>Built by students, for students</span><span>6 countries</span><span>3 continents</span><span>Launching September 2026</span>
         </div>
       </div>
     </div>
@@ -649,34 +636,10 @@
       <div class="sticky">
         <div class="sec-label"><b>02</b> The belief</div>
         <span class="we">We believe…</span>
-        <h2 id="beliefText">that every student interested in negotiation and strategic communication should have access to *meaningful learning* and *networking opportunities* — regardless of their university, country or economic background.</h2>
+        <h2 id="beliefText">that every student interested in negotiation, strategic communication and leadership, should have access to *meaningful learning* and *networking opportunities* — regardless of their university, country or economic background.</h2>
         <div class="foot" id="beliefFoot">
           <span>Any university</span><span>Any country</span><span>Any background</span>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY NESTOR -->
-  <section class="story" id="story">
-    <div class="wrap">
-      <div class="sec-label rv">Why NESTOR</div>
-      <div class="grid">
-        <div class="rv d1">
-          <p class="greek" lang="grc">τοῦ καὶ ἀπὸ γλώσσης <span>μέλιτος</span> γλυκίων ῥέεν αὐδή</p>
-          <p class="trans">“From his tongue flowed a voice sweeter than <em>honey</em>.”</p>
-          <p class="src">Homer · Iliad · Book I, line 249 · on Nestor, king of Pylos</p>
-        </div>
-        <div class="body rv d2">
-          <h2>The oldest voice in the room.<br><b>Now, the youngest.</b></h2>
-          <p>In the <em>Iliad</em>, when Agamemnon and Achilles are about to tear the Greek camp apart, it is Nestor who rises between them. He has outlived two generations of men and rules over a third. He doesn't reach for a sword. He asks them to listen.</p>
-          <p>Almost three thousand years later, we gave his name to a community of students, because we believe what he believed: <strong>the right words, said at the right moment, can move what force cannot.</strong></p>
-        </div>
-      </div>
-      <div class="timeline">
-        <div class="tl rv"><div class="yr">2024</div><p>In Milan, Simone Borgogno starts being mentored by former FBI agent Joe Navarro. The experiences that lead to NESTOR begin here.</p></div>
-        <div class="tl now rv d1"><div class="yr">Today<em>building</em></div><p>Students from six countries across three continents are building NESTOR together, across time zones.</p></div>
-        <div class="tl rv d2"><div class="yr">Sept 2026<em>launch</em></div><p>NESTOR opens its doors to students, associations and partners around the world.</p></div>
       </div>
     </div>
   </section>
@@ -687,7 +650,7 @@
       <div class="sec-label rv"><b>03</b> The community</div>
       <div class="head">
         <h2 class="rv d1">One community.<br><b>Different paths.</b></h2>
-        <p class="rv d2">Students from different universities and countries, united by a shared interest in negotiation and strategic communication — and by the ambition to learn from each other.</p>
+        <p class="rv d2">Students from different universities and countries, united by a shared interest in negotiation, strategic communication and leadership — and by the ambition to learn from each other.</p>
       </div>
 
       <div class="globe-wrap">
@@ -809,6 +772,20 @@
       </div>
       </div>
       <p class="tzline rv" id="tzLine"></p>
+    </div>
+  </section>
+
+  <!-- OUR STORY -->
+  <section class="story" id="story">
+    <div class="wrap">
+      <div class="sec-label rv">Our story</div>
+      <h2 class="rv d1">The story<br><b>so far.</b></h2>
+      <div class="timeline">
+        <div class="tl rv"><div class="yr">2024</div><p>Simone begins a mentorship with former FBI Special Agent Joe Navarro, now recognized as one of the world’s leading experts in nonverbal communication and human behavior.</p></div>
+        <div class="tl rv d1"><div class="yr">2025</div><p>Simone collaborates with Giuseppe Conti and CABL, a Swiss boutique consultancy focused on negotiation training and culture for Fortune 500 companies.</p></div>
+        <div class="tl rv d2"><div class="yr">2026</div><p>NESTOR Collective is born: a non-profit community connecting university students across countries through negotiation, strategic communication and leadership.</p></div>
+        <div class="tl now rv d3"><div class="yr">Today</div><p>A growing international team, spanning 3 continents and 4 languages, is shaping the future of NESTOR Collective.</p></div>
+      </div>
     </div>
   </section>
 
