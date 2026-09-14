@@ -504,6 +504,16 @@
   .logo img{max-height:60%;max-width:70%;filter:grayscale(1) brightness(1.6);opacity:.85}
   .logo:hover{border-color:var(--cyan-soft);color:var(--text)}
   .sup .logo{border-radius:8px}
+  .sup .logos{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sup .logo{aspect-ratio:2.6/1}
+  .logo.real{border-style:solid;border-color:rgba(143,163,199,.28);background:rgba(255,255,255,.03);opacity:1;padding:18px 26px}
+  .logo.real img{max-height:80%;max-width:62%;filter:none;opacity:.94;transition:opacity .5s,transform .6s var(--ease)}
+  .logo.real:hover img{opacity:1;transform:scale(1.04)}
+  .logo.join-slot{text-decoration:none;color:var(--muted);letter-spacing:.16em}
+  .logo.join-slot span{color:var(--cyan);font-size:14px}
+  .logo.join-slot:hover{border-color:var(--cyan-soft);color:var(--text)}
+  .logo.join-slot:focus-visible,.logo.real:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+  @media (max-width:560px){.sup .logos{grid-template-columns:1fr}}
   .ptn-cta{margin-top:40px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
   .ptn-cta p{color:var(--muted);font-weight:300;max-width:52ch}
   @media (max-width:980px){.partners .head{grid-template-columns:1fr}.partners .head p{justify-self:start}.ptn-group{grid-template-columns:1fr;gap:24px}.logos{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -1076,22 +1086,27 @@ makeSlider(document.getElementById('spkSlider'), SPEAKERS, (sp,i)=> sp.soon ? `<
   nav.inert=true;
 })();
 
-/* ---------- partners (logos go in img/partners/) ---------- */
+/* ---------- partners (logos in img/partners/, light version for the dark background) ---------- */
 const PARTNERS = {
-  community:[ /* {name:'Association name', img:'img/partners/x.svg'} */ ],
-  supporters:[ /* {name:'Company name', img:'img/partners/y.svg'} */ ],
+  community:[ /* {name:'Association name', img:'img/partners/x.svg', url:'https://...'} */ ],
+  supporters:[
+    { name:'Studio Leonardo', img:'img/partners/studio-leonardo.svg' },
+  ],
 };
 (function(){
-  function fill(id,list,slots,label){
+  function fill(id,list,slots,label,cta){
     const w=document.getElementById(id);
-    for(let i=0;i<Math.max(slots,list.length);i++){
-      const it=list[i];const d=document.createElement('div');d.className='logo';
-      d.innerHTML=it?(it.img?'<img src="'+it.img+'" alt="'+it.name+'">':it.name):label;
+    if(!list.length){ for(let i=0;i<slots;i++){const d=document.createElement('div');d.className='logo';d.textContent=label;w.appendChild(d);} return; }
+    list.forEach(it=>{
+      const d=document.createElement(it.url?'a':'div'); d.className='logo real'; d.title=it.name;
+      if(it.url){d.href=it.url;d.target='_blank';d.rel='noopener';}
+      d.innerHTML=it.img?'<img src="'+it.img+'" alt="'+it.name+'">':it.name;
       w.appendChild(d);
-    }
+    });
+    const c=document.createElement('a'); c.className='logo join-slot'; c.href='#join'; c.innerHTML=cta+' <span>→</span>'; w.appendChild(c);
   }
-  fill('logosCom',PARTNERS.community,8,'Association');
-  fill('logosSup',PARTNERS.supporters,4,'Supporter');
+  fill('logosCom',PARTNERS.community,8,'Association','Join as an association');
+  fill('logosSup',PARTNERS.supporters,4,'Supporter','Become a supporter');
 })();
 
 /* ---------- join form (mailto until a backend/form service is connected) ---------- */
