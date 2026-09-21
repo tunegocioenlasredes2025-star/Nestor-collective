@@ -374,6 +374,7 @@
   .sl-place .t::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:blink 2.4s ease-in-out infinite}
   @keyframes blink{50%{opacity:.3}}
   .sl-actions{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
+  .slider.single .sl-bar{display:none}
   .sl-bar{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:28px;align-items:center}
   .sl-count{min-width:92px;font-weight:200;font-size:28px;letter-spacing:-.02em;color:var(--muted);font-variant-numeric:tabular-nums}
   .sl-count b{font-weight:500;color:var(--text)}
@@ -504,15 +505,20 @@
   .logo img{max-height:60%;max-width:70%;filter:grayscale(1) brightness(1.6);opacity:.85}
   .logo:hover{border-color:var(--cyan-soft);color:var(--text)}
   .sup .logo{border-radius:8px}
-  .sup .logos{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sup .logos{grid-template-columns:repeat(3,minmax(0,1fr))}
   .sup .logo{aspect-ratio:2.6/1}
   .logo.real{border-style:solid;border-color:rgba(143,163,199,.28);background:rgba(255,255,255,.03);opacity:1;padding:18px 26px}
   .logo.real img{max-height:80%;max-width:62%;filter:none;opacity:.94;transition:opacity .5s,transform .6s var(--ease)}
   .logo.real:hover img{opacity:1;transform:scale(1.04)}
+  .logo.real{text-decoration:none}
+  .logo.real.lockup{gap:14px}
+  .logo.real.lockup img{height:54%;width:auto;max-height:none;max-width:none;opacity:1}
+  .lg-name{font-size:15px;font-weight:400;line-height:1.2;letter-spacing:.01em;text-transform:none;color:var(--text);text-align:left}
   .logo.join-slot{text-decoration:none;color:var(--muted);letter-spacing:.16em}
   .logo.join-slot span{color:var(--cyan);font-size:14px}
   .logo.join-slot:hover{border-color:var(--cyan-soft);color:var(--text)}
   .logo.join-slot:focus-visible,.logo.real:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+  @media (max-width:980px){.sup .logos{grid-template-columns:repeat(2,minmax(0,1fr))}}
   @media (max-width:560px){.sup .logos{grid-template-columns:1fr}}
   .ptn-cta{margin-top:40px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
   .ptn-cta p{color:var(--muted);font-weight:300;max-width:52ch}
@@ -962,6 +968,7 @@ function makeSlider(root, items, render, label){
   slides.forEach((el,i)=>{el.setAttribute('role','group');el.setAttribute('aria-roledescription','slide');el.setAttribute('aria-label',(i+1)+' of '+slides.length);});
   items.forEach((it,i)=>{const b=document.createElement('button');b.type='button';b.textContent=label(it);b.addEventListener('click',()=>go(i));idx.appendChild(b);});
   const tabs=[...idx.children];
+  root.classList.toggle('single',slides.length<2);
   tot.textContent=String(slides.length).padStart(2,'0');
   const smooth=!matchMedia('(prefers-reduced-motion: reduce)').matches;
   let at=-1;
@@ -990,10 +997,13 @@ const TEAM = [
     bio:'A student at IULM University in Milan, passionate about communication, negotiation and human behavior. Since 2024 he has been mentored by Joe Navarro, and he has collaborated with Giuseppe Conti and CABL, a Swiss boutique consultancy focused on negotiation training for Fortune 500 companies. NESTOR grew out of those experiences: connecting professional experience with the next generation.' },
   { first:'Thiago', last:'Braim', role:'International Relations & Network Development', uni:'Tetr College of Business', city:'New Delhi', country:'India', coords:'28.61° N · 77.21° E', tz:'Asia/Kolkata', img:'img/equipo/thiago-braim.webp',
     bio:'Thiago is an entrepreneur from Patagonia, Argentina. He founded a digital marketing agency at 15 and grew it to a team of six serving clients across Argentina and Chile, then co-founded a financial education project for young Argentines. He now studies Management & Technology at Tetr College of Business, a programme that moves between countries each term alongside classmates from more than 40 nationalities. At NESTOR he builds the international network — finding the people who can carry the project into new countries, and connecting them to the team.' },
-  { first:'Alessandro', last:'Bodini', role:'Advisory Board', uni:'Stockholm School of Economics', city:'Stockholm', country:'Sweden', coords:'59.33° N · 18.07° E', tz:'Europe/Stockholm', img:'img/equipo/alessandro-bodini.webp' },
-  { first:'Tommaso', last:'Panizza', role:'Advisory Board', uni:'University of Turin', city:'Turin', country:'Italy', coords:'45.07° N · 7.69° E', tz:'Europe/Rome', img:'img/equipo/tommaso-panizza.webp' },
+  { first:'Alessandro', last:'Bodini', role:'Advisory Board', uni:'Stockholm School of Economics', city:'Stockholm', country:'Sweden', coords:'59.33° N · 18.07° E', tz:'Europe/Stockholm', img:'img/equipo/alessandro-bodini.webp' ,
+    bio:'Originally from Varese, Italy, Alessandro is currently based in Stockholm, where he is pursuing a Bachelor’s degree in Economics at the Stockholm School of Economics (SSE). His international journey has taken him to Canada and Japan, where he lived for study experiences that shaped his international perspective and interest in connecting students across borders. Alessandro is also a co-founder of the Nordics Chapter of United Italian Societies (UIS), a leading network connecting Italian students studying abroad. After previously serving in a leadership position on the network’s board, he now focuses on the Nordics community as Country Manager.' },
+  { first:'Tommaso', last:'Panizza', role:'Advisory Board', uni:'University of Turin', city:'Turin', country:'Italy', coords:'45.07° N · 7.69° E', tz:'Europe/Rome', img:'img/equipo/tommaso-panizza.webp' ,
+    bio:'Tommaso was born in Cuneo, Italy, and holds a Bachelor’s degree in Business Administration, with a focus on business management. He is currently pursuing a Master’s degree in Corporate Finance and Financial Markets at the University of Turin (UniTo). He is one of the founders of Foundy, a platform dedicated to helping young people turn their ideas into projects and startups. Alongside his academic and entrepreneurial activities, he is also involved in volunteering with children aged 8 to 12. Curious and ambitious, Tommaso is passionate about learning through new experiences, travelling and meeting people from different backgrounds and cultures. Through Foundy, he aims to support young entrepreneurs in bringing their ideas to life, while developing his own path towards becoming a local point of reference in the financial sector.' },
   { first:'Mattia', last:'Porcheri', role:'Advisory Board', uni:'Università Cattolica', city:'Milan', country:'Italy', coords:'45.46° N · 9.19° E', tz:'Europe/Rome', img:'img/equipo/mattia-porcheri.webp' },
-  { first:'Gianluca', last:'Basta', role:'Advisory Board', uni:'City College of San Francisco', city:'San Francisco', country:'California, USA', coords:'37.77° N · 122.42° W', tz:'America/Los_Angeles', img:'img/equipo/gianluca-basta.webp' },
+  { first:'Gianluca', last:'Basta', role:'Advisory Board', uni:'City College of San Francisco', city:'San Francisco', country:'California, USA', coords:'37.77° N · 122.42° W', tz:'America/Los_Angeles', img:'img/equipo/gianluca-basta.webp' ,
+    bio:'Originally from Puglia, Italy, Gianluca is currently based in San Francisco, where he has built a community of 650+ founders and international students from the ground up. He is now the creator of From _ to SF, a series exploring the stories and perspectives of Silicon Valley pioneers. Through conversations with figures such as Giacomo Marini, co-founder of Logitech, Gianluca explores the mental models, experiences and ways of thinking behind extraordinary careers and entrepreneurial journeys. Driven by curiosity and a strong entrepreneurial mindset, he is passionate about people, ideas and the systems that shape how ambitious individuals build and think.' },
 ];
 makeSlider(document.getElementById('teamSlider'), TEAM, m=>`<article class="slide">
     <div class="sl-pic">${m.founder?'<span class="badge">Founder</span>':''}${IMG(m.img,m.first+' '+m.last)}<span class="ini">${m.first[0]}${m.last[0]}</span></div>
@@ -1020,7 +1030,7 @@ makeSlider(document.getElementById('teamSlider'), TEAM, m=>`<article class="slid
 
 /* ---------- speakers (photos in img/speakers/) ---------- */
 const SPEAKERS = [
-  { first:'Joe', last:'Navarro', kicker:'Global Thought Leaders', pos:'Nonverbal communications expert and former FBI special agent', img:'img/speakers/joe-navarro.webp',
+  { hidden:true, /* publish once he is officially announced as the first speaker */ first:'Joe', last:'Navarro', kicker:'Global Thought Leaders', pos:'Nonverbal communications expert and former FBI special agent', img:'img/speakers/joe-navarro.webp',
     short:'Recruited by the FBI at 23, he spent 25 years there as an agent and supervisor in counterintelligence and counterterrorism, where reading people became his craft.',
     facts:[['25','Years at the FBI'],['2003','Retired from the FBI'],['2024','Mentor to NESTOR\u2019s founder']],
     bio:[
@@ -1031,7 +1041,8 @@ const SPEAKERS = [
     tags:['Nonverbal communication','Human behavior','Counterintelligence','Business'] },
   { soon:true, kicker:'Next session', desc:'A new voice every month: negotiators, diplomats, experts and CEOs, followed by an open Q&A with students from our partner associations.' },
 ];
-makeSlider(document.getElementById('spkSlider'), SPEAKERS, (sp,i)=> sp.soon ? `<article class="slide">
+const SPK=SPEAKERS.filter(sp=>!sp.hidden);
+makeSlider(document.getElementById('spkSlider'), SPK, (sp,i)=> sp.soon ? `<article class="slide">
     <div class="sl-pic soon"><span class="ini"><b>?</b>To be announced</span></div>
     <div class="sl-txt">
       <span class="sl-ghost" aria-hidden="true">Next</span>
@@ -1066,7 +1077,7 @@ makeSlider(document.getElementById('spkSlider'), SPEAKERS, (sp,i)=> sp.soon ? `<
     if(sp.img){img.alt=sp.first+' '+sp.last;img.onload=()=>{img.style.display='';pic.classList.add('has');};img.onerror=()=>{img.style.display='none';};img.src=sp.img;}
     dlg.showModal();
   }
-  document.getElementById('spkSlider').addEventListener('click',e=>{const t=e.target.closest('[data-profile]');if(t)open(SPEAKERS[+t.dataset.profile]);});
+  document.getElementById('spkSlider').addEventListener('click',e=>{const t=e.target.closest('[data-profile]');if(t)open(SPK[+t.dataset.profile]);});
   dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close();});
 })();
 
@@ -1093,6 +1104,7 @@ const PARTNERS = {
   community:[ /* {name:'Association name', img:'img/partners/x.svg', url:'https://...'} */ ],
   supporters:[
     { name:'Studio Leonardo', img:'img/partners/studio-leonardo.svg' },
+    { name:'Tu Negocio En Las Redes', img:'img/partners/tu-negocio-en-las-redes.webp', label:'Tu Negocio<br>En Las Redes', url:'https://www.tunegocioenlasredes.com.ar' },
   ],
 };
 (function(){
@@ -1102,7 +1114,8 @@ const PARTNERS = {
     list.forEach(it=>{
       const d=document.createElement(it.url?'a':'div'); d.className='logo real'; d.title=it.name;
       if(it.url){d.href=it.url;d.target='_blank';d.rel='noopener';}
-      d.innerHTML=it.img?'<img src="'+it.img+'" alt="'+it.name+'">':it.name;
+      if(it.label)d.classList.add('lockup');
+      d.innerHTML=it.img?'<img src="'+it.img+'" alt="'+(it.label?'':it.name)+'">'+(it.label?'<span class="lg-name">'+it.label+'</span>':''):it.name;
       w.appendChild(d);
     });
     const c=document.createElement('a'); c.className='logo join-slot'; c.href='#join'; c.innerHTML=cta+' <span>→</span>'; w.appendChild(c);
